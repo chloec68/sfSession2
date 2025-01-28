@@ -113,3 +113,64 @@ body {
     box-shadow: 10px 10px 63px 3px rgba(46,91,255,0.52); */
 }
 
+
+
+
+/****************************************** ADD A SESSION */
+
+
+
+.form_container{
+    width:fit-content;
+    padding:40px;
+    margin: 100px auto 100px auto;
+    background-color: var(--white);
+    border-radius: 4px;
+    -webkit-box-shadow: -1px 9px 11px 0px rgba(46,91,255,0.19);
+    -moz-box-shadow: -1px 9px 11px 0px rgba(46,91,255,0.19);
+    box-shadow: -1px 9px 11px 0px rgba(46,91,255,0.19);
+}
+
+label {
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.custom-input {
+    width: 100%;
+    height:4em;
+    padding: 10px;
+    margin-top:20px;
+    margin-bottom:20px;
+    background-color: var(--background);
+    border-radius: 5px;
+    font-size: 16px;
+    border:none;
+    box-shadow: #D9D9D9 0px 3px 5px 0px inset;
+    font-family: "Montserrat", serif;
+}
+
+.form_container .row {
+    display: flex;
+
+    gap: 40px; 
+    margin-bottom: 20px; 
+}
+
+.form_container .form-group {
+    flex: 1 1 40%;
+    min-width: 220px; 
+}
+
+.submit-btn {
+    background-color: var(--blue);
+    color: var(--white);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    font-size: 1.3em;
+    margin: 50px auto auto auto;
+}

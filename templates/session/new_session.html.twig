@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}
+      <div class="nav_container">
+                    <div class="nav-left">
+                    <p id="welcome">add a session</p>
+                    </div>
+                    <div class="nav-right">
+                        <p><a href=" {{ path('app_session') }} ">all sessions <i class="fa-solid fa-circle-arrow-right"></i></a></p>
+                    </div>
+                </div>
+{% endblock nav %}
+
+{% block body %}
+
+<div class="form_container">
+    {{ form_start(formNewSession) }}
+    
+    <div class="row">
+        <div class="form-group">
+            {{ form_label(formNewSession.name, "Nom de la session") }}
+            {{ form_widget(formNewSession.name, {'attr': {'class': 'custom-input'}}) }}
+            {{ form_errors(formNewSession.name) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(formNewSession.nbPlaces, "Nombre de places") }}
+            {{ form_widget(formNewSession.nbPlaces, {'attr': {'class': 'custom-input'}}) }}
+            {{ form_errors(formNewSession.nbPlaces) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            {{ form_label(formNewSession.startingDate, "Date de début") }}
+            {{ form_widget(formNewSession.startingDate, {'attr': {'class': 'custom-input'}}) }}
+            {{ form_errors(formNewSession.startingDate) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(formNewSession.endingDate, "Date de fin") }}
+            {{ form_widget(formNewSession.endingDate, {'attr': {'class': 'custom-input'}}) }}
+            {{ form_errors(formNewSession.endingDate) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            {{ form_label(formNewSession.staffMember, "Trainer") }}
+            {{ form_widget(formNewSession.staffMember, {'attr': {'class': ' custom-input'}}) }}
+            {{ form_errors(formNewSession.staffMember) }}
+        </div>
+ 
+        <div class="form-group">
+            {{ form_label(formNewSession.training, "Training") }}
+            {{ form_widget(formNewSession.training, {'attr': {'class': 'custom-input'}}) }}
+            {{ form_errors(formNewSession.training) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(formNewSession.trainees, "Trainees") }}
+            {{ form_widget(formNewSession.trainees, {'attr': {'class': 'custom-input'}}) }}
+            {{ form_errors(formNewSession.trainees) }}
+        </div>
+    </div>
+
+    <div class="row">
+            {{ form_widget(formNewSession.submit) }}
+    </div>
+
+    {{ form_end(formNewSession) }}
+</div>
+
+{% endblock body %}

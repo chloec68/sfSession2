@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Session;
+use App\Form\SessionType;
 use App\Repository\SessionRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,7 +24,7 @@ final class SessionController extends AbstractController
         ]);
     }
 
-    #[Route('/session', name: 'add_session')]
+    #[Route('/session/new', name: 'new_session')]
     #[Route('/session/{id}/update', name: 'update_session')]
         public function add_update_Session(Request $request,EntityManagerInterface $entityManager, ?Session $session =null): Response
         {
@@ -34,7 +36,7 @@ final class SessionController extends AbstractController
 
             $form->handleRequest($request);
 
-            if(form->isSubmitted() && $form->isValid()){
+            if($form->isSubmitted() && $form->isValid()){
                 $session = $form->getDate();
                 $sessionManager >persist($ession); // équivalent $pdo->prepare
                 $sessionManager->flush(); // équivalent $pdo->execute
