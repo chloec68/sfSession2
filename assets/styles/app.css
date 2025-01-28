@@ -82,6 +82,12 @@ body {
     border-spacing: 0px 2em;
 }
 
+#sessions_table th{
+    text-transform: uppercase;
+    color: var(--blue);
+    font-weight: 600;
+}
+
  #sessions_table td {
     background-color: var(--white);
     padding: 8px;
@@ -95,5 +101,15 @@ body {
 
 #search{
     width:40px;
+}
+
+#add-button{
+    width:100px;
+    text-align: right;
+    float: right;
+    margin:20px 100px 20px 20px;
+    /* -webkit-box-shadow: 10px 10px 63px 3px rgba(46,91,255,0.52);
+    -moz-box-shadow: 10px 10px 63px 3px rgba(46,91,255,0.52);
+    box-shadow: 10px 10px 63px 3px rgba(46,91,255,0.52); */
 }
 
