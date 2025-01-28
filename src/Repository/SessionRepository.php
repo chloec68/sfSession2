@@ -48,6 +48,7 @@ class SessionRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+      
 }
 
 
