@@ -18,13 +18,13 @@
     
     <div class="row">
         <div class="form-group">
-            {{ form_label(formNewSession.name, "Nom de la session") }}
+            {{ form_label(formNewSession.name, "Name") }}
             {{ form_widget(formNewSession.name, {'attr': {'class': 'custom-input'}}) }}
             {{ form_errors(formNewSession.name) }}
         </div>
 
         <div class="form-group">
-            {{ form_label(formNewSession.nbPlaces, "Nombre de places") }}
+            {{ form_label(formNewSession.nbPlaces, "Number of places") }}
             {{ form_widget(formNewSession.nbPlaces, {'attr': {'class': 'custom-input'}}) }}
             {{ form_errors(formNewSession.nbPlaces) }}
         </div>
@@ -32,13 +32,13 @@
 
     <div class="row">
         <div class="form-group">
-            {{ form_label(formNewSession.startingDate, "Date de début") }}
+            {{ form_label(formNewSession.startingDate, "Starting date") }}
             {{ form_widget(formNewSession.startingDate, {'attr': {'class': 'custom-input'}}) }}
             {{ form_errors(formNewSession.startingDate) }}
         </div>
 
         <div class="form-group">
-            {{ form_label(formNewSession.endingDate, "Date de fin") }}
+            {{ form_label(formNewSession.endingDate, "Ending date") }}
             {{ form_widget(formNewSession.endingDate, {'attr': {'class': 'custom-input'}}) }}
             {{ form_errors(formNewSession.endingDate) }}
         </div>
