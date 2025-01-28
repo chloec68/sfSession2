@@ -37,27 +37,63 @@ body {
     font-weight:700;
 }
 
-.editProfile_container{
+.nav_middle{
     margin:10px;
 }
 
-.editProfile_container:hover,.nav-left i:hover{
+.nav_middle:hover,.nav-right i:hover{
    cursor:pointer;
 }
 
-.nav_container .editProfile_container #editProfile a{
+.nav_container .nav_middle #editProfile a{
     font-size:1.3em;
     color:var(--blue);
     text-decoration: none;
 }
 
 .nav-left{
-    margin:10px;
+    display: flex;
+    align-items: baseline;
+    gap:20px;
 }
 
-.nav-left a{
+.nav-right{
+    margin:10px;
+    text-transform:uppercase;
+}
+
+.nav-right a{
     color:var(--blue);
     text-decoration: none;
     font-size: 1.5em;
+}
+
+
+/****************************************** SESSIONS */
+
+.sessions_wrapper{
+    width:100%;
+    padding:20px;
+}
+
+#sessions_table{
+    width:100%;
+    border-radius: 4px;
+    border-spacing: 0px 2em;
+}
+
+ #sessions_table td {
+    background-color: var(--white);
+    padding: 8px;
+    text-align: center;
+    border: none;
+}
+
+#sessions_table tr{
+    margin-bottom: 10px; 
+}
+
+#search{
+    width:40px;
 }
 

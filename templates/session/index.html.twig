@@ -2,6 +2,56 @@
 
 {% block title %}Hello SessionController!{% endblock %}
 
+{% block nav %}
+      <div class="nav_container">
+                    <div class="nav-left">
+                    <p id="welcome">all sessions</p>
+                    <p> {{totalSessions}} Sessions </p>
+                    </div>
+                    <div class="nav_middle">
+                        {# <p id="editProfile"><a href="">Edit Profile <i class="fa-solid fa-pen"></i></a></p> #}
+                    </div>
+                    <div class="nav-right">
+                        <p><a href="">all trainees <i class="fa-solid fa-circle-arrow-right"></i> </a></p>
+                    </div>
+                </div>
+{% endblock nav %}
+
 {% block body %}
-    
+<div class="sessions_wrapper">
+    <table id="sessions_table">
+        <thead>
+            <th>name</th>
+            <th>starting date</th>
+            <th>ending date</th>
+            <th>total places</th>
+            <th>reserved</th>
+            <th>available</th>
+            <th>program details</th>
+        </thead>
+    {% for session in sessions %}
+            <tbody>
+                <tr>
+                    <td>{{session.name}}</td>
+                    <td>{{session.startingDate | date("d-m-Y")}}</td>
+                    <td>{{session.endingDate | date("d-m-Y")}}</td>
+                    <td>{{session.nbPlaces}}</td>
+                    <td></td>
+                    <td></td>
+                    <td><a href="{{ path('detail_session', {'id':session.id}) }}"><img id="search" src="Icones/chercher.png" alt="Link to session details"></a></td>
+                </tr>
+            </tbody>
+       
+
+    {% endfor %}
+    </table>
+</div>
 {% endblock %}
+
+
+
+
+
+
+
+

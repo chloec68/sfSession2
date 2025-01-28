@@ -44,7 +44,7 @@ class Session
     private ?Training $training = null;
 
     #[ORM\ManyToOne(inversedBy: 'sessions')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?User $staffMember = null;
 
     public function __construct()
