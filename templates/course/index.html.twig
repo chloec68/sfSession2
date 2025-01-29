@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}All Trainees{% endblock %}
+{% block title %}All Courses{% endblock %}
 
 {% block nav %}
       <div class="nav_container">
                     <div class="nav-left">
-                    <p id="welcome">all trainees </p>
-                    <p> {{totalTrainees}} Trainees </p>
+                    <p id="welcome">all courses</p>
+                    {# <p> {{totalCourses}} Courses </p> #}
                     </div>
                     <div class="nav_middle">
                         {# <p id="editProfile"><a href="">Edit Profile <i class="fa-solid fa-pen"></i></a></p> #}
@@ -21,19 +21,14 @@
 <div class="sessions_wrapper">
     <table id="sessions_table">
         <thead>
-            <th>first name</th>
-            <th>last name</th>
-            <th>email</th>
-            <th>details</th>
- 
+            <th>name</th>
+            <th>category</th>
         </thead>
-    {% for trainee in trainees %}
+    {% for course in courses %}
             <tbody>
                 <tr>
-                    <td>{{trainee.firstName}}</td>
-                    <td>{{trainee.lastName }}</td>
-                    <td>{{trainee.email}}</td>
-                    <td><a href=" {{ path('detail_trainee',{'id':trainee.id}) }}"><i class="fa-solid fa-circle-arrow-right"></i></a></td>
+                    <td>{{course.name}}</td>
+                    <td>{{course.category.name}}</td>
                 </tr>
             </tbody>
     {% endfor %}

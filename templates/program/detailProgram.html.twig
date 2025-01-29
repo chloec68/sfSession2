@@ -1,0 +1,46 @@
+
+{% extends 'base.html.twig' %} 
+
+{% block title %}Program{% endblock %}
+
+{% block nav %}
+      <div class="nav_container">
+                    <div class="nav-left">
+                    <p id="welcome">{{ session.name }}/Program</p>
+                    {# <p> {{totalSessions}} Sessions </p> #}
+                    </div>
+                    <div class="nav_middle">
+                        {# <p id="editProfile"><a href="">Edit Profile <i class="fa-solid fa-pen"></i></a></p> #}
+                    </div>
+                    <div class="nav-right">
+                        <p><a href=" {{ path('app_home') }} ">Home <i class="fa-solid fa-circle-arrow-right"></i></a></p>
+                    </div>
+                </div>
+{% endblock nav %}
+
+
+{% block body %}
+<div class="sessions_wrapper">
+<table id="sessions_table">
+    <thead>
+        <tr>
+            <th>Session</th>
+            <th>Course</th>
+            <th>Duration</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+        
+        {% for program in session.programs %}     
+            <td>{{ program.session.name }}</td>
+            <td>{{ program.course.name }}</td>   
+            <td>{{ program.durationInDays }} days</td>
+        {% endfor %}
+        </tr>
+    </tbody>
+ </table>
+    
+</div>
+{% endblock %}

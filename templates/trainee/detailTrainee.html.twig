@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All Trainees{% endblock %}
+
+{% block nav %}
+      <div class="nav_container">
+                    <div class="nav-left">
+                    <p id="welcome">Trainee {{trainee.firstName}} {{trainee.lastName}} / Details</p>
+                    {# <p> {{totalTrainees}} Trainees </p> #}
+                    </div>
+                    <div class="nav_middle">
+                        {# <p id="editProfile"><a href="">Edit Profile <i class="fa-solid fa-pen"></i></a></p> #}
+                    </div>
+                    <div class="nav-right">
+                        <p><a href=" {{ path('app_home') }}">home <i class="fa-solid fa-circle-arrow-right"></i> </a></p>
+                    </div>
+                </div>
+{% endblock nav %}
+
+{% block body %}
+<div class="trainee_wrapper">
+    <div class="trainee_container">
+    <h3>Details</h3>
+    <div class="trainee-row"><p class="blue">First Name</p><p class="uppercase bold">{{ trainee.firstName }}</p></div>
+    <div class="trainee-row"><p class="blue">Last Name</p><p class="uppercase bold">{{ trainee.lastName }}</p></div>
+    {# <div><p>Gender</p><p>{{ trainee.gender }}</p></div> #}
+    <div class="trainee-row"><p class="blue">Email</p><p class="uppercase bold">{{ trainee.email }}</p></div>
+    {# <div><p>Phone</p><p>{{ trainee.phone }}</p></div> #}
+    <div class="trainee-row"><p class="blue">Address</p><p class="uppercase bold">{{ trainee.address }}</p></div>
+    <div class="trainee-row"><p class="blue">Post code</p><p class="uppercase bold">{{ trainee.postcode }}</p></div>
+    <div class="trainee-row"><p class="blue">City</p><p class="uppercase bold">{{ trainee.city }}</p></div>
+    </div>
+
+    <div class="traineeSessions_wrapper">
+    <h3>Schedulded Sessions</h3>
+    {% for session in trainee.sessions %}
+        <div class="traineeSessions_row"><p class="bold">{{ session.name }}</p><p>{{ session.startingDate | date('d-m-Y')}}</p><p>{{ session.endingDate | date('d-m-Y')}}</p></div>
+  {% endfor %}
+    </div>
+
+</div>
+
+
+
+
+
+{% endblock %}
+
+
+

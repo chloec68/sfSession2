@@ -160,4 +160,5 @@ class Trainee
 
         return $this;
     }
+
 }

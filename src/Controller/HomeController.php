@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CourseRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class HomeController extends AbstractController
 {
@@ -15,4 +16,14 @@ final class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
+
+    #[Route('/courses', name: 'app_course')]
+    public function allCourses(CourseRepository $courseRepository): Response
+    {
+        $courses=$courseRepository->findBy([],['name'=>'ASC']);
+        return $this->render('course/index.html.twig', [
+            "courses" => $courses,
+        ]);
+    }
+
 }

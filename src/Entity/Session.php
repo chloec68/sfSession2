@@ -144,6 +144,13 @@ class Session
         return $this->trainees;
     }
 
+    public function getNbTrainees(): int
+    {   
+        $trainees = $this->getTrainees();
+        $nbTrainees = count($trainees);
+        return $nbTrainees;
+    }
+
     public function addTrainee(Trainee $trainee): static
     {
         if (!$this->trainees->contains($trainee)) {
@@ -161,6 +168,12 @@ class Session
         }
 
         return $this;
+    }
+
+    public function getNbPlacesLeft(): int
+    {
+        return $this->getNbPlaces()-count($this->trainees);
+
     }
 
     public function getTraining(): ?Training

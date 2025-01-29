@@ -1,0 +1,74 @@
+{# détails de la session
+stagiaires inscrits dans la session 
+stagiaire non inscrits dans la session 
+requête SQL, puis : 
+requête DQL  #}
+
+SELECT CONCAT(t.first_name, t.last_name) FROM trainee t 
+WHERE t.id NOT IN(
+	SELECT ts2.trainee_id
+	FROM trainee_session ts2
+	INNER JOIN session s2 ON ts2.session_id = s2.id
+	WHERE s2.id = 13
+)
+
+SELECT trainee FROM App\Entity\Trainee as trainee 
+WHERE trainee NOT IN(
+    SELECT session
+    FROM App\Entity\Session session
+    WHERE session.id = :id
+)
+
+{% extends 'base.html.twig' %}
+
+{% block title %}All Sessions{% endblock %}
+
+{% block nav %}
+      <div class="nav_container">
+                    <div class="nav-left">
+                    <p id="welcome"> {{ session.name }}/details</p>
+                    </div>
+                    <div class="nav_middle">
+                    </div>
+                    <div class="nav-right">
+                        <p><a href=" {{ path('app_home') }}">home <i class="fa-solid fa-circle-arrow-right"></i> </a></p>
+                    </div>
+                </div>
+{% endblock nav %}
+
+{% block body %}
+<div class="sessions_wrapper">
+    <table id="sessions_table">
+        <thead>
+            <th>name</th>
+            <th>starting date</th>
+            <th>ending date</th>
+            <th>total places</th>
+            <th>Nb trainees enrolled</th>
+            <th>available</th>
+        </thead>
+   
+            <tbody>
+                <tr>
+                    <td>{{session.name}}</td>
+                    <td>{{session.startingDate | date("d-m-Y")}}</td>
+                    <td>{{session.endingDate | date("d-m-Y")}}</td>
+                    <td>{{session.nbPlaces}}</td>
+                    <td>{{session.nbTrainees}}</td>
+                    <td>{{session.nbPlacesLeft}}</td>
+                </tr>
+            </tbody>
+    </table>
+
+    <div>
+        <p>Trainees enrolled:</p>
+        {% for trainee in session.trainees %}
+            {{trainee.lastName}}
+            {{trainee.firstName}}
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
+
+

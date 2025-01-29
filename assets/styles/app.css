@@ -4,6 +4,7 @@
     --blue:#2E5BFF;
     --black:#1F212C;
     --grey:#7E8286;
+    --green:#16cb4d;
 }
 
 *{
@@ -29,6 +30,7 @@ body {
     box-shadow: 10px 4px 5px 0px rgba(46,91,255,0.19);
     display: flex;
     justify-content: space-between;
+    align-items:baseline;
 }
 
 .nav_container #welcome{
@@ -67,6 +69,37 @@ body {
     text-decoration: none;
     font-size: 1.5em;
 }
+
+#avatar{
+    width:100px;
+}
+
+/****************************************** HOME */
+
+.home_wrapper{
+    padding:40px;
+    display:flex;
+    justify-content:center;
+    gap:15%;
+}
+.home_button{
+    background-color:var(--blue);
+    width:fit-content;
+    padding:20px;
+    border-radius:4px;
+    margin:20px;
+}
+
+ .home_button a{
+     color:var(--white);
+     font-weight:700;
+     text-decoration:none;
+ }
+
+ .home_button:hover{
+    background-color:var(--green);
+    cursor:pointer;
+ }
 
 
 /****************************************** SESSIONS */
@@ -173,4 +206,61 @@ label {
     cursor: pointer;
     font-size: 1.3em;
     margin: 50px auto auto auto;
+}
+
+
+/****************************************** TRAINEE DETAILS */
+
+.trainee_wrapper{
+    background-color:var(--white);
+    width:80%;
+    display:flex;
+    justify:center;
+    gap:20%;
+    padding:100px;
+    margin:100px auto auto auto;
+}
+.trainee_container{
+    width:35%;
+}
+
+.trainee-row{
+    display:flex;
+    justify-content:space-between;
+    padding:10px;
+    background-color:var(--background);
+    border-radius:4px;
+    margin:10px;
+}
+
+.traineeSessions_wrapper{
+    width:35%;
+}
+
+.traineeSessions_row{
+    display:flex;
+    justify-content:space-between;
+    background-color:var(--background);
+    border-radius:4px;
+    margin:10px;
+    padding:10px;
+}
+
+h3{
+    color:var(--blue);
+    text-align:center;
+    text-transform:uppercase;
+}
+
+.blue{
+    color:var(--blue);
+}
+
+.uppercase{
+    text-transform:uppercase;
+   
+}
+
+.bold{
+    font-weight:600;
 }
