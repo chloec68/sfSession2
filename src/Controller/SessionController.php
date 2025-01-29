@@ -38,21 +38,25 @@ final class SessionController extends AbstractController
     }
 
 
-    #[Route('/session/new', name: 'new_session')]
+    #[Route('/session/new/{id}', name: 'new_session')]
     #[Route('/session/{id}/update', name: 'update_session')]
-        public function add_update_Session(Request $request,EntityManagerInterface $entityManager, ?Session $session =null): Response
+        public function add_update_Session(TrainingRepository $trainingRepository, Request $request,EntityManagerInterface $entityManager, ?Session $session =null): Response
         {
             if(!$session){
                 $session = new Session();
             }
+            // $id = $request->query->get('id');
+            // $training = $trainingRepository->find($id);
+            // $training = $entityManager->getRepository(Training::class)->find($id);
 
             $form = $this->createForm(SessionType::class,$session);
 
             $form->handleRequest($request);
 
             if($form->isSubmitted() && $form->isValid()){
-                $session = $form->getDate();
-                $sessionManager >persist($ession); // équivalent $pdo->prepare
+
+                $session = $form->getData();
+                $sessionManager >persist($session); // équivalent $pdo->prepare
                 $sessionManager->flush(); // équivalent $pdo->execute
                 return $this->redirectToRoute('app_session');
             }

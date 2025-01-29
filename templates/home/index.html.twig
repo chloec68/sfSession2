@@ -5,18 +5,18 @@
 {% block body %}
 
 <div class="home_wrapper">
-    <div class="home_button" >
-        <a href="{{ path('app_session') }}">ALL SESSIONS</a>
-    </div>
-    <div class="home_button">
-        <a href="{{ path('app_training') }}">ALL TRAININGS</a>
-    </div>
-    <div class="home_button">
-        <a href="{{ path('app_trainee') }}">ALL TRAINEES</a>
-    </div>
+    
+        <a class="home_button" href="{{ path('app_session') }}">ALL SESSIONS</a>
+    
+    
+        <a class="home_button" href="{{ path('app_training') }}">ALL TRAININGS</a>
+ 
+   
+        <a class="home_button" href="{{ path('app_trainee') }}">ALL TRAINEES</a>
 
-     <div class="home_button">
-        <a href="{{ path('app_course') }}">ALL COURSES</a>
-    </div>
+
+   
+        <a class="home_button" href="{{ path('app_course') }}">ALL COURSES</a>
+  
 </div>
 {% endblock %}

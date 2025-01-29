@@ -78,10 +78,10 @@ body {
 
 .home_wrapper{
     padding:40px;
-    display:flex;
-    justify-content:center;
-    gap:15%;
+    width: fit-content;
+    margin: 100px auto auto auto;
 }
+
 .home_button{
     background-color:var(--blue);
     width:fit-content;
@@ -90,9 +90,9 @@ body {
     margin:20px;
 }
 
- .home_button a{
+ .home_button{
      color:var(--white);
-     font-weight:700;
+     font-weight:600;
      text-decoration:none;
  }
 
@@ -102,7 +102,7 @@ body {
  }
 
 
-/****************************************** SESSIONS */
+/****************************************** ALL SESSIONS,ALL TRAININGS, */
 
 .sessions_wrapper{
     width:100%;
@@ -136,14 +136,10 @@ body {
     width:40px;
 }
 
-#add-button{
-    width:100px;
-    text-align: right;
-    float: right;
+.fa-circle-plus{
+    font-size:6em;
     margin:20px 100px 20px 20px;
-    /* -webkit-box-shadow: 10px 10px 63px 3px rgba(46,91,255,0.52);
-    -moz-box-shadow: 10px 10px 63px 3px rgba(46,91,255,0.52);
-    box-shadow: 10px 10px 63px 3px rgba(46,91,255,0.52); */
+    float:right;
 }
 
 

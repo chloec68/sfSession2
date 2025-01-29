@@ -32,35 +32,27 @@
 
     <div class="row">
         <div class="form-group">
-            {{ form_label(formNewSession.startingDate, "Starting date") }}
-            {{ form_widget(formNewSession.startingDate, {'attr': {'class': 'custom-input'}}) }}
-            {{ form_errors(formNewSession.startingDate) }}
+            {{ form_row(formNewSession.startingDate, {'attr': {'class': 'custom-input'}}) }}
         </div>
 
         <div class="form-group">
-            {{ form_label(formNewSession.endingDate, "Ending date") }}
-            {{ form_widget(formNewSession.endingDate, {'attr': {'class': 'custom-input'}}) }}
-            {{ form_errors(formNewSession.endingDate) }}
+            {{ form_row(formNewSession.endingDate, {'attr': {'class': 'custom-input'}}) }}
         </div>
     </div>
 
     <div class="row">
         <div class="form-group">
-            {{ form_label(formNewSession.staffMember, "Trainer") }}
-            {{ form_widget(formNewSession.staffMember, {'attr': {'class': ' custom-input'}}) }}
-            {{ form_errors(formNewSession.staffMember) }}
+            {{ form_row(formNewSession.staffMember, {'attr': {'class': ' custom-input'}}) }}
+  
         </div>
  
         <div class="form-group">
-            {{ form_label(formNewSession.training, "Training") }}
-            {{ form_widget(formNewSession.training, {'attr': {'class': 'custom-input'}}) }}
-            {{ form_errors(formNewSession.training) }}
+            {{ form_row(formNewSession.training, {'attr': {'disabled': 'disabled', 'class': 'custom-input'}}) }}
         </div>
 
         <div class="form-group">
-            {{ form_label(formNewSession.trainees, "Trainees") }}
-            {{ form_widget(formNewSession.trainees, {'attr': {'class': 'custom-input'}}) }}
-            {{ form_errors(formNewSession.trainees) }}
+            {{ form_row(formNewSession.trainees, {'attr': {'class': 'custom-input'}}) }}
+   
         </div>
     </div>
 

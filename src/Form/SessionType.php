@@ -34,6 +34,7 @@ class SessionType extends AbstractType
                 'class' => Training::class,
                 'choice_label' => 'id',
             ])
+
             ->add('staffMember', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'id',
