@@ -4,7 +4,7 @@ stagiaire non inscrits dans la session
 requête SQL, puis : 
 requête DQL  #}
 
-SELECT CONCAT(t.first_name, t.last_name) FROM trainee t 
+{# SELECT CONCAT(t.first_name, t.last_name) FROM trainee t 
 WHERE t.id NOT IN(
 	SELECT ts2.trainee_id
 	FROM trainee_session ts2
@@ -17,7 +17,7 @@ WHERE trainee NOT IN(
     SELECT session
     FROM App\Entity\Session session
     WHERE session.id = :id
-)
+) #}
 
 {% extends 'base.html.twig' %}
 
