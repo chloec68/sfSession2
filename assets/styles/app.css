@@ -207,14 +207,17 @@ label {
 
 /****************************************** TRAINEE DETAILS */
 
-.trainee_wrapper{
+.mainWrapper{
     background-color:var(--white);
     width:80%;
+    margin:100px auto 100px auto;
+    padding:100px;
+}
+
+.trainee_wrapper{
     display:flex;
     justify-content:center;
     gap:5%;
-    padding:100px;
-    margin:100px auto auto auto;
 }
 .trainee_container{
     width:45%;
@@ -222,6 +225,7 @@ label {
 
 .trainee-row{
     display:flex;
+    flex-wrap: wrap;
     justify-content:space-between;
     padding:10px;
     background-color:var(--background);
@@ -235,6 +239,7 @@ label {
 
 .traineeSessions_row{
     display:flex;
+    flex-wrap: wrap;
     justify-content:space-between;
     background-color:var(--background);
     border-radius:4px;
@@ -259,4 +264,16 @@ h3{
 
 .bold{
     font-weight:600;
+}
+
+#options_container{
+    width:100%; 
+    padding:30px;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.options-p a{
+    text-decoration: none;
 }
