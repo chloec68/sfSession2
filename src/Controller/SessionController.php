@@ -79,7 +79,7 @@ final class SessionController extends AbstractController
                 'edit' => $session->getId() // si l'entreprise est déjà créée, un id est renvoyé (renvoie bool:true) / sinon bool:false
             ]);
         }
-
+    
 
     #[Route('/session/{id}', name: 'detail_session')]
     public function detailSession(Session $session): Response
@@ -88,6 +88,28 @@ final class SessionController extends AbstractController
             'session' => $session
         ]);
     }
+    
+
+    #[Route('/session/{id}/delete', name: 'delete_session')]
+    public function deleteSession(Session $session, EntityManagerInterface $entityManager): Response
+    {
+        $trainees = $session->getTrainees();
+        $programs = $session->getPrograms();
+
+        foreach ($trainees as $trainee) {
+            $session->removeTrainee($trainee);
+        }
+
+        foreach ($programs as $program){
+            $session->removeProgram($program);
+        }
+
+        $entityManager->remove($session);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_session');
+    }
+
 
     #[Route('/training/{id}', name: 'detail_training')]
     public function trainingDetails(Training $training): Response
@@ -104,5 +126,29 @@ final class SessionController extends AbstractController
             'session' => $session
         ]);
     }
+    // #[Route('/session/{id}/add-program', name: 'add_program')]
+    // public function addProgram(Request $request, EntityManagerInterface $entityManager, int $id, SessionRepository $sessionRepository):Response
+    // {   
+    //     $program = new Program();
+
+    //     $session = $sessionRepository->find($id);
+        
+    //     $form = $this->createForm(ProgramType::class, $proagram);
+    //     $form->handleRequest($request);
+
+    //     if($form->isSubmitted() && $form->isValid()){
+    //         $program = $form->setData();
+    //         $session->addProgram($program);
+    //         $program->setSession($session);
+
+    //         $entityManager->persist($program);
+    //         $entityManager->flush();
+
+    //         return $this->redirectToRoute('detail_program');
+    //     }
+    //     return $this->render('program/add_program.html.twig',[
+    //         'form'=>$form
+    //     ]);
+    // }
 }
 

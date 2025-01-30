@@ -211,13 +211,13 @@ label {
     background-color:var(--white);
     width:80%;
     display:flex;
-    justify:center;
-    gap:20%;
+    justify-content:center;
+    gap:5%;
     padding:100px;
     margin:100px auto auto auto;
 }
 .trainee_container{
-    width:35%;
+    width:45%;
 }
 
 .trainee-row{
@@ -230,7 +230,7 @@ label {
 }
 
 .traineeSessions_wrapper{
-    width:35%;
+    width:45%;
 }
 
 .traineeSessions_row{
