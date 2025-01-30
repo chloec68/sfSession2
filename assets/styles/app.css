@@ -24,7 +24,7 @@ body {
     background-color: var(--white);
     width:100%;
     height:fit-content;
-    padding:10px 20px 10px 20px;
+    padding:10px 30px 10px 30px;
     -webkit-box-shadow: 10px 4px 5px 0px rgba(46,91,255,0.19);
     -moz-box-shadow: 10px 4px 5px 0px rgba(46,91,255,0.19);
     box-shadow: 10px 4px 5px 0px rgba(46,91,255,0.19);
@@ -77,7 +77,7 @@ body {
 /****************************************** HOME */
 
 .home_wrapper{
-    padding:40px;
+    padding:50px;
     width: fit-content;
     margin: 100px auto auto auto;
 
@@ -162,15 +162,15 @@ body {
 } */
 
 .add_button{
+    border-radius:100px;
+    background-color:orange;
+    width:fit-content;
+    padding:20px;
     color:var(--white);
     font-weight:600;
     text-decoration:none;
-    background-color:var(--blue);
-    padding:10px;
-    border-radius:4px;
-    display:block;
-    width: fit-content;
     margin: auto;
+    display: block;
 }
 
 .add_button:hover{

@@ -26,9 +26,17 @@ final class HomeController extends AbstractController
     public function allCourses(CourseRepository $courseRepository): Response
     {
         $courses=$courseRepository->findBy([],['name'=>'ASC']);
-        return $this->render('course/index.html.twig', [
-            "courses" => $courses,
-        ]);
+
+        foreach($courses as $course){
+            $category = $course->getCategory(); 
+
+            if(!$category){
+                $course->setCategory(null);
+            }
+        } 
+            return $this->render('course/index.html.twig', [
+                "courses" => $courses,
+            ]);
     }
 
 
@@ -53,8 +61,16 @@ final class HomeController extends AbstractController
 
         $form->handleRequest($request);
 
+        // $courses = $category->getCourses(); 
+      
+
         if($form->isSubmitted() && $form->isValid()){
+
             $category = $form->getData();
+           
+            // foreach($courses as $course){
+            //     $course->setCategory($category);
+            // }
             $entityManager->persist($category);
             $entityManager->flush();
             return $this->redirectToRoute('app_category');

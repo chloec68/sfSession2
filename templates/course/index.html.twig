@@ -28,7 +28,13 @@
             <tbody>
                 <tr>
                     <td>{{course.name}}</td>
+                    {% if course.category is not null%}
                     <td>{{course.category.name}}</td>
+                        {% else %}
+                        <td><a href="{{ path('add_category') }}">add category</a></td>
+                        
+                    {% endif %}
+                    
                 </tr>
             </tbody>
     {% endfor %}
