@@ -5,7 +5,7 @@
 {% block body %}
 
 <div class="home_wrapper">
-    
+        <div>
         <a class="home_button" href="{{ path('app_session') }}">ALL SESSIONS</a>
     
     
@@ -13,11 +13,15 @@
  
    
         <a class="home_button" href="{{ path('app_trainee') }}">ALL TRAINEES</a>
-
-
    
         <a class="home_button" href="{{ path('app_course') }}">ALL COURSES</a>
-  
+        </div>
+
+        <div>
+        <a class="home_button" href="{{ path('app_session') }}">ADD A SESSION</a>
+
+        <a class="home_button" href="{{ path('add_trainee') }}">ADD A TRAINEE</a>
+        </div>
   
 </div>
 {% endblock %}

@@ -102,11 +102,11 @@ body {
  }
 
 
-/****************************************** ALL SESSIONS,ALL TRAININGS, */
+/****************************************** ALL SESSIONS,ALL TRAININGS,ALL TRAINEES */
 
 .sessions_wrapper{
     width:100%;
-    padding:20px;
+    padding:40px;
 }
 
 #sessions_table{
@@ -140,6 +140,23 @@ body {
     font-size:6em;
     margin:20px 100px 20px 20px;
     float:right;
+}
+
+.add_button{
+    color:var(--white);
+    font-weight:600;
+    text-decoration:none;
+    background-color:var(--blue);
+    padding:10px;
+    border-radius:4px;
+    display:block;
+    width: fit-content;
+    margin: auto;
+}
+
+.add_button:hover{
+    background-color:var(--green);
+    cursor:pointer;
 }
 
 

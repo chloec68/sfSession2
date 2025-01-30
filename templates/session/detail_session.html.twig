@@ -67,10 +67,13 @@ WHERE trainee NOT IN(
 
     <div>
         <p>Trainees enrolled:</p>
+        {% if session.trainees|length == 0 %}
+        None
+    {% else %}
         {% for trainee in session.trainees %}
-            {{trainee.lastName}}
-            {{trainee.firstName}}
+            {{ trainee.lastName }} {{ trainee.firstName }}
         {% endfor %}
+    {% endif %}
     </div>
 
 </div>

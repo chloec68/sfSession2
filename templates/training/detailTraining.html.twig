@@ -7,8 +7,7 @@
 {% block nav %}
       <div class="nav_container">
                     <div class="nav-left">
-                    <p id="welcome">{{ training.name }}/Available sessions</p>
-                    {# <p> {{totalSessions}} Sessions </p> #}
+                    <p id="welcome">{{ training.name }}/ sessions</p>
                     </div>
                     <div class="nav_middle">
                         {# <p id="editProfile"><a href="">Edit Profile <i class="fa-solid fa-pen"></i></a></p> #}
@@ -46,6 +45,6 @@
  {% endfor %}
     </tbody>
  </table>
-     <a href="{{ path('add_session',{'id':training.id}) }}"><i class="fa-solid fa-circle-plus"></i></a>
+     <a class="add_button" href="{{ path('add_session',{'id':training.id}) }}">ADD A SESSION</a>
 </div>
 {% endblock %}

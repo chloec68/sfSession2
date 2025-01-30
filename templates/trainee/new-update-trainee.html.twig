@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}
+      <div class="nav_container">
+                    <div class="nav-left">
+                    </div>
+                    <div class="nav-right">
+                        <p><a href=" {{ path('app_trainee') }} ">all trainees <i class="fa-solid fa-circle-arrow-right"></i></a></p>
+                    </div>
+                </div>
+{% endblock nav %}
+
+{% block body %}
+
+<div class="form_container">
+    {{ form_start(formNewTrainee) }}
+    
+    <div class="row">
+        <div class="form-group">
+            {{ form_label(formNewTrainee.firstName, "first name") }}
+            {{ form_widget(formNewTrainee.firstName, {'attr': {'class': 'custom-input'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(formNewTrainee.lastName, "last name") }}
+            {{ form_widget(formNewTrainee.lastName, {'attr': {'class': 'custom-input'}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            {{ form_row(formNewTrainee.dateOfBirth, {'attr': {'class': 'custom-input'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_row(formNewTrainee.email, {'attr': {'class': 'custom-input'}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            {{ form_row(formNewTrainee.address, {'attr': {'class': ' custom-input'}}) }}
+  
+        </div>
+ 
+        <div class="form-group">
+            {{ form_row(formNewTrainee.postcode, {'attr': {'class': 'custom-input'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_row(formNewTrainee.city, {'attr': {'class': 'custom-input', 'multiple': 'multiple'}}) }}
+   
+        </div>
+    </div>
+
+    <div class="row">
+            {{ form_widget(formNewTrainee.submit) }}
+    </div>
+
+    {{ form_end(formNewTrainee) }}
+</div>
+
+{% endblock body %}

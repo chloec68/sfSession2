@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class TraineeType extends AbstractType
 {
@@ -26,8 +27,14 @@ class TraineeType extends AbstractType
             ->add('city')
             ->add('sessions', EntityType::class, [
                 'class' => Session::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
                 'multiple' => true,
+                // 'expandable' => false
+            ])
+            ->add('submit', SubmitType::class, [
+                'attr'=> [
+                    'class' => 'submit-btn'
+                ]
             ])
         ;
     }
