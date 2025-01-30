@@ -139,6 +139,9 @@ final class SessionController extends AbstractController
             'session' => $session
         ]);
     }
+
+    
+
     // #[Route('/session/{id}/add-program', name: 'add_program')]
     // public function addProgram(Request $request, EntityManagerInterface $entityManager, int $id, SessionRepository $sessionRepository):Response
     // {   

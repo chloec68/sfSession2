@@ -24,7 +24,7 @@ body {
     background-color: var(--white);
     width:100%;
     height:fit-content;
-    padding:10px;
+    padding:10px 20px 10px 20px;
     -webkit-box-shadow: 10px 4px 5px 0px rgba(46,91,255,0.19);
     -moz-box-shadow: 10px 4px 5px 0px rgba(46,91,255,0.19);
     box-shadow: 10px 4px 5px 0px rgba(46,91,255,0.19);
@@ -80,6 +80,19 @@ body {
     padding:40px;
     width: fit-content;
     margin: 100px auto auto auto;
+
+    display:flex;
+    flex-direction:column;
+    gap:10vh;
+}
+
+.all_wrapper,.add_wrapper{
+    gap:15px;
+    display: flex;
+}
+
+.add_wrapper{
+    justify-content: center;
 }
 
 .home_button{
@@ -87,20 +100,26 @@ body {
     width:fit-content;
     padding:20px;
     border-radius:4px;
-    margin:20px;
+    color:var(--white);
+    font-weight:600;
+    text-decoration:none;
 }
 
- .home_button{
-     color:var(--white);
-     font-weight:600;
-     text-decoration:none;
- }
-
- .home_button:hover{
+ .home_button:hover,.home_button_round:hover{
     background-color:var(--green);
     cursor:pointer;
  }
 
+
+.home_button_round{
+    border-radius:100px;
+    background-color:orange;
+    width:fit-content;
+    padding:20px;
+    color:var(--white);
+    font-weight:600;
+    text-decoration:none;
+}
 
 /****************************************** ALL SESSIONS,ALL TRAININGS,ALL TRAINEES */
 
@@ -136,11 +155,11 @@ body {
     width:40px;
 }
 
-.fa-circle-plus{
+/* .fa-circle-plus{
     font-size:6em;
     margin:20px 100px 20px 20px;
     float:right;
-}
+} */
 
 .add_button{
     color:var(--white);
@@ -160,6 +179,37 @@ body {
 }
 
 
+/****************************************** ALL CATEGORIES */
+
+
+.categories_wrapper{
+    width:100%;
+    padding:40px;
+}
+
+#categories_table{
+    width:fit-content;
+    border-radius: 4px;
+    border-spacing: 0px 1em;
+    margin:auto;
+}
+
+#categories_table th{
+    text-transform: uppercase;
+    color: var(--blue);
+    font-weight: 600;
+}
+
+ #categories_table td {
+    background-color: var(--white);
+    padding: 8px;
+    text-align: center;
+    border: none;
+}
+
+#categories_table tr{
+    margin-bottom: 10px; 
+}
 
 
 /****************************************** ADD A SESSION */
