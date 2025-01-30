@@ -39,47 +39,6 @@ final class SessionController extends AbstractController
     }
 
 
-    // #[Route('/training/{id}/add-session', name: 'add_session')]
-    // #[Route('/session/{id}/update', name: 'update_session')]
-    // public function add_update_Session(int $id,TrainingRepository $trainingRepository, Request $request,EntityManagerInterface $entityManager, ?Session $session =null): Response
-    //     {
-    //         $training = $trainingRepository->find($id);
-      
-            
-
-    //         if(!$session){
-    //             $session = new Session();
-    //         }
-    
-    //         $form = $this->createForm(SessionType::class,$session);
-
-    //         $form->handleRequest($request);
-
-    //         if($form->isSubmitted() && $form->isValid()){
-    //             $session = $form->getData();
-    //             $trainees = $session->getTrainees();
-    //             // if($trainees !== null){
-    //             //     foreach($trainees as $trainee){
-    //             //         $session->addTrainee($trainee);
-    //             //     }
-    //             // }
-    //             $session->setTraining($training);
-    //             if($session !== null){
-    //                 $training->addSession($session);
-    //             }
-               
-    //             $entityManager->persist($session); // équivalent $pdo->prepare
-    //             $entityManager->flush(); // équivalent $pdo->execute // exécution de l'enregistrement en BDD
-    //             return $this->redirectToRoute('app_session');
-    //         }
-    //         return $this->render('session/new_update_session.html.twig', [
-    //             'formNewSession'=>$form,
-    //             'edit' => $session->getId() // si l'entreprise est déjà créée, un id est renvoyé (renvoie bool:true) / sinon bool:false
-    //         ]);
-    //     }
-
-
-
     #[Route('/training/{id}/add', name: 'add_session')]
     public function add_session(int $id,TrainingRepository $trainingRepository, TraineeRepository $traineeRepository, Request $request, EntityManagerInterface $entityManager):Response
     {
@@ -113,11 +72,26 @@ final class SessionController extends AbstractController
 }
 
     #[Route('/session/{id}/update', name: 'update_session')]
-    public function updateSession(Session $session):Response
+    public function updateSession(Session $session, int $id, Request $request, EntityManagerInterface $entityManager):Response
     {
-        
-    }
+        $form = $this->createForm(SessionType::class,$session);
+        $form->handleRequest($request);
 
+        if($form->isSubmitted() && $form->isValid()){
+            $session = $form->getData();
+            $trainees = $session->getTrainees();
+            foreach($trainees as $trainee){
+                $session->addTrainee($trainee);
+                $trainee->addSession($session);
+            }
+            $entityManager->persist($session);
+            $entityManager->flush();
+            return $this->redirectToRoute('app_session');
+        }
+        return $this->render('session/new_update_session.html.twig', [
+            'formNewSession'=>$form
+        ]);
+    }
 
 
     #[Route('/session/{id}', name: 'detail_session')]
