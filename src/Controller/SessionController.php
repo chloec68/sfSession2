@@ -38,26 +38,40 @@ final class SessionController extends AbstractController
     }
 
 
-    #[Route('/session/new/{id}', name: 'new_session')]
+    #[Route('/training/{id}/add-session', name: 'new_session')]
     #[Route('/session/{id}/update', name: 'update_session')]
-        public function add_update_Session(TrainingRepository $trainingRepository, Request $request,EntityManagerInterface $entityManager, ?Session $session =null): Response
+        public function add_update_Session(int $id,TrainingRepository $trainingRepository, Request $request,EntityManagerInterface $entityManager, ?Session $session =null): Response
         {
+        //1. le paramètre d'URL {id} est passé à la méthode = la valeur d'{id} est injecté dans l'argument $id
+        //2. TrainingRepository => une class de Repository => permet d'agir avec la BDD pour l'entité Training : récupérer l'entité, injecter données, etc
+        //3. Request => la requête HTTP envoyée par le navigateur (client) => toutes les informations envoyées par l'utilisateur
+        // la méthode handleRequest() provient de l'objet Form créé par Symfony
+        //4. EntityManagerInterface est fournie par Doctrine ORM (Object-Relational-Mapper) => permet de manipuler des objets PHP associés à des tables en BDD == entités 
+        // dans le contexte de Doctrine ORM // POO=>objets // Doctrine ORM=>entités // 
+        // Une entité == une classe PHP == une table /=>> une instance de la classe PHP == une ligne de la table 
+        // une entité == un modèle qui reflète la stucture de la table en BDD
+        // une entité est "mappée" à une table en BDD grâce aux @ORM 
+        // les méthodes d'EntityManager : find(), findOneBy(),getRepository(),persist(),flush(),remove(),getRepository()
+        // Entity Manager => outil ppal de doctrine pour gérer la persistance des entités (==l'enregistrement et la gestion de l'état d'un objet dans la base de données : ajouter, modifier, supprimer...)
+        //EntityManagerInterface est la définition des méthodes que tout gestionnaire d'entités doit avoir, mais c'est une interface, pas une implémentation concrète.
+        //EntityManager est une implémentation concrète de EntityManagerInterface. C'est l'implémentation fournie par Doctrine, qui contient la logique réelle pour manipuler les entités et les synchroniser avec la base de données.
+        //c’est EntityManager qui effectue les opérations réelles sur la base de données, mais dans le respect du "contrat" défini par l'interface EntityManagerInterface.
             if(!$session){
                 $session = new Session();
+                $training = $trainingRepository->find($id);
+                $session->setTraining($training);
             }
-            // $id = $request->query->get('id');
-            // $training = $trainingRepository->find($id);
-            // $training = $entityManager->getRepository(Training::class)->find($id);
-
+    
             $form = $this->createForm(SessionType::class,$session);
 
             $form->handleRequest($request);
 
             if($form->isSubmitted() && $form->isValid()){
-
+                
+                $training->addSession($session);
                 $session = $form->getData();
-                $sessionManager >persist($session); // équivalent $pdo->prepare
-                $sessionManager->flush(); // équivalent $pdo->execute
+                $entityManager->persist($session); // équivalent $pdo->prepare
+                $entityManager->flush(); // équivalent $pdo->execute // exécution de l'enregistrement en BDD
                 return $this->redirectToRoute('app_session');
             }
             return $this->render('session/new_session.html.twig', [
@@ -65,6 +79,7 @@ final class SessionController extends AbstractController
                 'edit' => $session->getId() // si l'entreprise est déjà créée, un id est renvoyé (renvoie bool:true) / sinon bool:false
             ]);
         }
+
 
     #[Route('/session/{id}', name: 'detail_session')]
     public function detailSession(Session $session): Response
