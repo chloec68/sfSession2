@@ -48,14 +48,14 @@ final class SessionController extends AbstractController
         // la méthode handleRequest() provient de l'objet Form créé par Symfony
         //4. EntityManagerInterface est fournie par Doctrine ORM (Object-Relational-Mapper) => permet de manipuler des objets PHP associés à des tables en BDD == entités 
         // dans le contexte de Doctrine ORM // POO=>objets // Doctrine ORM=>entités // 
-        // Une entité == une classe PHP == une table /=>> une instance de la classe PHP == une ligne de la table 
-        // une entité == un modèle qui reflète la stucture de la table en BDD
-        // une entité est "mappée" à une table en BDD grâce aux @ORM 
-        // les méthodes d'EntityManager : find(), findOneBy(),getRepository(),persist(),flush(),remove(),getRepository()
-        // Entity Manager => outil ppal de doctrine pour gérer la persistance des entités (==l'enregistrement et la gestion de l'état d'un objet dans la base de données : ajouter, modifier, supprimer...)
-        //EntityManagerInterface est la définition des méthodes que tout gestionnaire d'entités doit avoir, mais c'est une interface, pas une implémentation concrète.
-        //EntityManager est une implémentation concrète de EntityManagerInterface. C'est l'implémentation fournie par Doctrine, qui contient la logique réelle pour manipuler les entités et les synchroniser avec la base de données.
-        //c’est EntityManager qui effectue les opérations réelles sur la base de données, mais dans le respect du "contrat" défini par l'interface EntityManagerInterface.
+            // Une entité == une classe PHP == une table /=>> une instance de la classe PHP == une ligne de la table 
+            // une entité == un modèle qui reflète la stucture de la table en BDD
+            // une entité est "mappée" à une table en BDD grâce aux @ORM 
+            // les méthodes d'EntityManager : find(), findOneBy(),getRepository(),persist(),flush(),remove(),getRepository()
+            // Entity Manager => outil ppal de doctrine pour gérer la persistance des entités (== l'enregistrement et la gestion de l'état d'un objet dans la base de données : ajouter, modifier, supprimer...) : lors de la création d'un nouvel objet PHP, il est enregistré en mémoire, mais n'est pas persistant (enregistré en BDD)
+            //EntityManagerInterface est la définition des méthodes que tout gestionnaire d'entités doit avoir, mais c'est une interface, pas une implémentation concrète.
+            //EntityManager est une implémentation concrète de EntityManagerInterface. C'est l'implémentation fournie par Doctrine, qui contient la logique réelle pour manipuler les entités et les synchroniser avec la base de données.
+            //c’est EntityManager qui effectue les opérations réelles sur la base de données, mais dans le respect du "contrat" défini par l'interface EntityManagerInterface.
             if(!$session){
                 $session = new Session();
                 $training = $trainingRepository->find($id);
