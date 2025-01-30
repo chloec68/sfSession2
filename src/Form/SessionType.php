@@ -27,12 +27,13 @@ class SessionType extends AbstractType
             ->add('nbPlaces')
             ->add('trainees', EntityType::class, [
                 'class' => Trainee::class,
-                'choice_label' => 'id',
+                // 'choice_label' => 'lastName',
                 'multiple' => true,
+                'expanded' => true
             ])
             ->add('training', EntityType::class, [
                 'class' => Training::class,
-                'choice_label' => 'id',
+                // 'choice_label' => 'id',
             ])
 
             ->add('staffMember', EntityType::class, [

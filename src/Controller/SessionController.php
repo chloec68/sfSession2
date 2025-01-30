@@ -7,6 +7,7 @@ use App\Entity\Session;
 use App\Entity\Training;
 use App\Form\SessionType;
 use App\Repository\SessionRepository;
+use App\Repository\TraineeRepository;
 use App\Repository\TrainingRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,48 +39,86 @@ final class SessionController extends AbstractController
     }
 
 
-    #[Route('/training/{id}/add-session', name: 'new_session')]
-    #[Route('/session/{id}/update', name: 'update_session')]
-        public function add_update_Session(int $id,TrainingRepository $trainingRepository, Request $request,EntityManagerInterface $entityManager, ?Session $session =null): Response
-        {
-        //1. le paramètre d'URL {id} est passé à la méthode = la valeur d'{id} est injecté dans l'argument $id
-        //2. TrainingRepository => une class de Repository => permet d'agir avec la BDD pour l'entité Training : récupérer l'entité, injecter données, etc
-        //3. Request => la requête HTTP envoyée par le navigateur (client) => toutes les informations envoyées par l'utilisateur
-        // la méthode handleRequest() provient de l'objet Form créé par Symfony
-        //4. EntityManagerInterface est fournie par Doctrine ORM (Object-Relational-Mapper) => permet de manipuler des objets PHP associés à des tables en BDD == entités 
-        // dans le contexte de Doctrine ORM // POO=>objets // Doctrine ORM=>entités // 
-            // Une entité == une classe PHP == une table /=>> une instance de la classe PHP == une ligne de la table 
-            // une entité == un modèle qui reflète la stucture de la table en BDD
-            // une entité est "mappée" à une table en BDD grâce aux @ORM 
-            // les méthodes d'EntityManager : find(), findOneBy(),getRepository(),persist(),flush(),remove(),getRepository()
-            // Entity Manager => outil ppal de doctrine pour gérer la persistance des entités (== l'enregistrement et la gestion de l'état d'un objet dans la base de données : ajouter, modifier, supprimer...) : lors de la création d'un nouvel objet PHP, il est enregistré en mémoire, mais n'est pas persistant (enregistré en BDD)
-            //EntityManagerInterface est la définition des méthodes que tout gestionnaire d'entités doit avoir, mais c'est une interface, pas une implémentation concrète.
-            //EntityManager est une implémentation concrète de EntityManagerInterface. C'est l'implémentation fournie par Doctrine, qui contient la logique réelle pour manipuler les entités et les synchroniser avec la base de données.
-            //c’est EntityManager qui effectue les opérations réelles sur la base de données, mais dans le respect du "contrat" défini par l'interface EntityManagerInterface.
-            if(!$session){
-                $session = new Session();
-                $training = $trainingRepository->find($id);
-                $session->setTraining($training);
-            }
+    // #[Route('/training/{id}/add-session', name: 'add_session')]
+    // #[Route('/session/{id}/update', name: 'update_session')]
+    // public function add_update_Session(int $id,TrainingRepository $trainingRepository, Request $request,EntityManagerInterface $entityManager, ?Session $session =null): Response
+    //     {
+    //         $training = $trainingRepository->find($id);
+      
+            
+
+    //         if(!$session){
+    //             $session = new Session();
+    //         }
     
-            $form = $this->createForm(SessionType::class,$session);
+    //         $form = $this->createForm(SessionType::class,$session);
 
-            $form->handleRequest($request);
+    //         $form->handleRequest($request);
 
-            if($form->isSubmitted() && $form->isValid()){
-                
-                $training->addSession($session);
-                $session = $form->getData();
-                $entityManager->persist($session); // équivalent $pdo->prepare
-                $entityManager->flush(); // équivalent $pdo->execute // exécution de l'enregistrement en BDD
-                return $this->redirectToRoute('app_session');
-            }
-            return $this->render('session/new_session.html.twig', [
-                'formNewSession'=>$form,
-                'edit' => $session->getId() // si l'entreprise est déjà créée, un id est renvoyé (renvoie bool:true) / sinon bool:false
-            ]);
+    //         if($form->isSubmitted() && $form->isValid()){
+    //             $session = $form->getData();
+    //             $trainees = $session->getTrainees();
+    //             // if($trainees !== null){
+    //             //     foreach($trainees as $trainee){
+    //             //         $session->addTrainee($trainee);
+    //             //     }
+    //             // }
+    //             $session->setTraining($training);
+    //             if($session !== null){
+    //                 $training->addSession($session);
+    //             }
+               
+    //             $entityManager->persist($session); // équivalent $pdo->prepare
+    //             $entityManager->flush(); // équivalent $pdo->execute // exécution de l'enregistrement en BDD
+    //             return $this->redirectToRoute('app_session');
+    //         }
+    //         return $this->render('session/new_update_session.html.twig', [
+    //             'formNewSession'=>$form,
+    //             'edit' => $session->getId() // si l'entreprise est déjà créée, un id est renvoyé (renvoie bool:true) / sinon bool:false
+    //         ]);
+    //     }
+
+
+
+    #[Route('/training/{id}/add', name: 'add_session')]
+    public function add_session(int $id,TrainingRepository $trainingRepository, TraineeRepository $traineeRepository, Request $request, EntityManagerInterface $entityManager):Response
+    {
+	$training = $trainingRepository->find($id);
+
+	$session = new Session();
+
+    $trainees = $session->getTrainees();
+
+	$form=$this->createForm(SessionType::class,$session);
+
+	$form->handleRequest($request);
+
+	if($form->isSubmitted() && $form->isValid()){
+		$session = $form->getData();
+		$session->setTraining($training);
+
+		if(count($session->getTrainees()) !== null){
+			foreach($trainees as $trainee){
+				$session->addTrainee($trainee);
+                $trainee->addSession($session);
+			}
+		$entityManager->persist($session);
+		$entityManager->flush();
+		return $this->redirectToRoute('app_session');
         }
-    
+	}
+	return $this->render('session/new_update_session.html.twig', [
+		'formNewSession' => $form,	
+	]);
+}
+
+    #[Route('/session/{id}/update', name: 'update_session')]
+    public function updateSession(Session $session):Response
+    {
+        
+    }
+
+
 
     #[Route('/session/{id}', name: 'detail_session')]
     public function detailSession(Session $session): Response
@@ -88,7 +127,7 @@ final class SessionController extends AbstractController
             'session' => $session
         ]);
     }
-    
+
 
     #[Route('/session/{id}/delete', name: 'delete_session')]
     public function deleteSession(Session $session, EntityManagerInterface $entityManager): Response
