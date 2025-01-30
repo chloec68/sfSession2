@@ -64,4 +64,19 @@ final class HomeController extends AbstractController
             'edit' => $category->getId()
         ]);
     }
+
+
+    #[Route('/category/{id}/delete', name: 'delete_category')]
+    public function deleteCategory(Category $category, EntityManagerInterface $entityManager, int $id)
+    {   
+        $courses = $category->getCourses();
+        foreach($courses as $course){
+            $course->setCategory(null);
+        }
+        $entityManager->remove($category);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_category');
+    }
+
 }
