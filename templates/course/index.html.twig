@@ -31,7 +31,8 @@
                     {% if course.category is not null%}
                     <td>{{course.category.name}}</td>
                         {% else %}
-                        <td><a href="{{ path('add_category') }}">add category</a></td>
+                        {# <td><a href="{{ path('add_category_to_course', {'id':course.id}) }}">add category</a></td> #}
+                        <td>NULL</td>
                         {% endif %}
                         </tr>
                     </tbody>

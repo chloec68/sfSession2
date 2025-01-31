@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CourseRepository;
+use App\Form\AddCategoryToCourseType;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\Loader\Configurator\form;
 
 final class HomeController extends AbstractController
 {
@@ -61,16 +63,9 @@ final class HomeController extends AbstractController
 
         $form->handleRequest($request);
 
-        // $courses = $category->getCourses(); 
-      
-
         if($form->isSubmitted() && $form->isValid()){
 
             $category = $form->getData();
-           
-            // foreach($courses as $course){
-            //     $course->setCategory($category);
-            // }
             $entityManager->persist($category);
             $entityManager->flush();
             return $this->redirectToRoute('app_category');
@@ -81,13 +76,13 @@ final class HomeController extends AbstractController
         ]);
     }
 
-
     #[Route('/category/{id}/delete', name: 'delete_category')]
     public function deleteCategory(Category $category, EntityManagerInterface $entityManager, int $id)
     {   
         $courses = $category->getCourses();
         foreach($courses as $course){
-            $course->setCategory(null);
+            $category->removeCourse($course);
+            $entityManager->remove($course);
         }
         $entityManager->remove($category);
         $entityManager->flush();

@@ -11,6 +11,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class SessionType extends AbstractType
 {
@@ -24,7 +25,9 @@ class SessionType extends AbstractType
             ->add('endingDate', null, [
                 'widget' => 'single_text',
             ])
-            ->add('nbPlaces')
+            ->add('nbPlaces', IntegerType::class, [
+                'attr'=>['min' => 1]
+            ])
             ->add('trainees', EntityType::class, [
                 'class' => Trainee::class,
                 // 'choice_label' => 'lastName',

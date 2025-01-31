@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Session;
 use App\Entity\Trainee;
 use App\Form\TraineeType;
+use App\Repository\SessionRepository;
 use App\Repository\TraineeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,20 +55,31 @@ final class TraineeController extends AbstractController
 
     }
 
-    #[Route('/trainee/{id}/delete', name: 'delete_trainee-in-session')]
-    public function deleteTraineeInSession(Trainee $trainee, EntityManagerInterface $entityManager, int $id)
-    {
-        $entityManager->remove($trainee);
-        $entityManager->flush();
 
-        return $this->redirectToRoute('app_session');
-    }
+    #[Route('/session/{id}/trainee/{traineeId}/delete', name: 'delete_trainee-from-session')]
+    public function deleteTraineeInSession(EntityManagerInterface $entityManager, SessionRepository $sessionRepository,TraineeRepository $traineeRepository, int $id, int $traineeId)
+    {       
+    $session = $sessionRepository->find($id);
+    // $session = $entityManager->getRepository(Session::class)->find($sessionId);
+    $notEnrolled = $sessionRepository->findNotEnrolled($session->getId());
+
+
+    $trainee = $traineeRepository->find($traineeId);
+
+    $session->removeTrainee($trainee);
+
+    $entityManager->flush();
+
+    return $this->render('session/detail_session.html.twig', ['traineeId' => $traineeId,'session'=>$session,'notEnrolled' => $notEnrolled]);
+    }   
+
 
     #[Route('/trainee/delete/{id}', name: 'delete_trainee')]
     public function deleteTrainee(Trainee $trainee, EntityManagerInterface $entityManager, )
     {   
         $entityManager->remove($trainee);
         $entityManager->flush();
+
         return $this->redirectToRoute('app_trainee');
     }
 
@@ -78,5 +91,21 @@ final class TraineeController extends AbstractController
         ]);
     }
 
+    #[Route('/add-trainee/{idTrainee}/session/{idSession}', name:'add_trainee_to_session')]
+    public function addTraineeToSesion(EntityManagerInterface $entityManager, TraineeRepository $traineeRepository, SessionRepository $sessionRepository, int $idTrainee, int $idSession)
+    {   
+        $session = $sessionRepository->find($idSession);
+        $notEnrolled = $sessionRepository->findNotEnrolled($session->getId());
+
+        $trainee = $traineeRepository->find($idTrainee);
+        
+        $session->addTrainee($trainee);
+
+        $entityManager->persist($trainee);
+        $entityManager->flush(); 
+
+        return $this->render('session/detail_session.html.twig',
+        ['session'=>$session, 'trainee'=>$trainee, 'idSession'=>$idSession,'idTrainee'=>$idTrainee, 'notEnrolled' => $notEnrolled]);
+    }
 }
 

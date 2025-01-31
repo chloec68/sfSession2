@@ -77,7 +77,6 @@ final class SessionController extends AbstractController
         $form = $this->createForm(SessionType::class,$session);
         $form->handleRequest($request);
         $nbPlaces = $session->getNbPlaces();
-        
 
         if($form->isSubmitted() && $form->isValid()){
             $session = $form->getData();
@@ -94,6 +93,7 @@ final class SessionController extends AbstractController
             }
             $entityManager->persist($session);
             $entityManager->flush();
+            $message="trainee(s) successfully added";
             return $this->redirectToRoute('app_session');
         }
         return $this->render('session/new_update_session.html.twig', [
