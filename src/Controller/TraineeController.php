@@ -53,12 +53,20 @@ final class TraineeController extends AbstractController
 
     }
 
-    #[Route('/trainee/{id}/delete', name: 'delete_trainee')]
-    public function deleteTrainee(Trainee $trainee, EntityManagerInterface $entityManager, int $id)
+    #[Route('/trainee/{id}/delete', name: 'delete_trainee-in-session')]
+    public function deleteTraineeInSession(Trainee $trainee, EntityManagerInterface $entityManager, int $id)
     {
         $entityManager->remove($trainee);
         $entityManager->flush();
 
+        return $this->redirectToRoute('app_session');
+    }
+
+    #[Route('/trainee/delete/{id}', name: 'delete_trainee')]
+    public function deleteTrainee(Trainee $trainee, EntityManagerInterface $entityManager, )
+    {   
+        $entityManager->remove($trainee);
+        $entityManager->flush();
         return $this->redirectToRoute('app_trainee');
     }
 

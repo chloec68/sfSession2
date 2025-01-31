@@ -76,29 +76,42 @@ final class SessionController extends AbstractController
     {
         $form = $this->createForm(SessionType::class,$session);
         $form->handleRequest($request);
+        $nbPlaces = $session->getNbPlaces();
+        
 
         if($form->isSubmitted() && $form->isValid()){
             $session = $form->getData();
             $trainees = $session->getTrainees();
-            foreach($trainees as $trainee){
-                $session->addTrainee($trainee);
-                $trainee->addSession($session);
+            $nbTrainees = count($trainees);
+
+            if($nbPlaces < $nbTrainees){
+                return $this->redirectToRoute('app_session');
+            }else{
+                foreach($trainees as $trainee){
+                    $session->addTrainee($trainee);
+                    $trainee->addSession($session);
+                }
             }
             $entityManager->persist($session);
             $entityManager->flush();
             return $this->redirectToRoute('app_session');
         }
         return $this->render('session/new_update_session.html.twig', [
-            'formNewSession'=>$form
+            'formNewSession'=>$form,
+   
         ]);
     }
 
 
+
     #[Route('/session/{id}', name: 'detail_session')]
-    public function detailSession(Session $session): Response
+    public function detailSession(Session $session, SessionRepository $sessionRepository): Response
     {
+        $notEnrolled = $sessionRepository->findNotEnrolled($session->getId());
+
         return $this->render('session/detail_session.html.twig', [
-            'session' => $session
+            'session' => $session,
+            'notEnrolled' => $notEnrolled
         ]);
     }
 
@@ -140,31 +153,5 @@ final class SessionController extends AbstractController
         ]);
     }
 
-    
-
-    // #[Route('/session/{id}/add-program', name: 'add_program')]
-    // public function addProgram(Request $request, EntityManagerInterface $entityManager, int $id, SessionRepository $sessionRepository):Response
-    // {   
-    //     $program = new Program();
-
-    //     $session = $sessionRepository->find($id);
-        
-    //     $form = $this->createForm(ProgramType::class, $proagram);
-    //     $form->handleRequest($request);
-
-    //     if($form->isSubmitted() && $form->isValid()){
-    //         $program = $form->setData();
-    //         $session->addProgram($program);
-    //         $program->setSession($session);
-
-    //         $entityManager->persist($program);
-    //         $entityManager->flush();
-
-    //         return $this->redirectToRoute('detail_program');
-    //     }
-    //     return $this->render('program/add_program.html.twig',[
-    //         'form'=>$form
-    //     ]);
-    // }
 }
 

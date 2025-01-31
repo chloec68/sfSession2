@@ -48,7 +48,36 @@ class SessionRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
-      
+
+
+
+    public function findNotEnrolled($session_id)
+    {
+        $em = $this->getEntityManager();
+        $sub = $em->createQueryBuilder();
+
+        $qb = $sub;
+        // sélectionner tous les stagiaires d'une session dont l'id est passé en paramètre
+        $qb->select('s')
+            ->from('App\Entity\Trainee', 's')
+            ->leftJoin('s.sessions','se')
+            ->where('se.id = :id');
+        
+        $sub = $em->createQueryBuilder();
+        // sélectionner tous les stagiaires qui ne sont pas (not in) dans le résultat précédent
+        // on obtient donc les stagiaires non inscrits pour une sessino définie 
+        $sub->select('st')
+            ->from('App\Entity\Trainee', 'st')
+            ->where($sub->expr()->notIn('st.id', $qb->getDQL()))
+        //requête paramétrée
+        ->setParameter('id',$session_id)
+        //trier la liste des stagiaires sur le nom de famille
+        ->orderBy('st.lastName');
+
+        //renvoyer le résultat
+        $query = $sub->getQuery();
+        return $query->getResult();
+    }
 }
 
 

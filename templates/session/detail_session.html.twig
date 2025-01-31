@@ -65,18 +65,53 @@ WHERE trainee NOT IN(
             </tbody>
     </table>
 
-    <div>
-        <p>Trainees enrolled:</p>
-        {% if session.trainees|length == 0 %}
-        None
-    {% else %}
-        {% for trainee in session.trainees %}
-            {{ trainee.lastName }} {{ trainee.firstName }}
+    <div class="sessionTrainees_wrapper">
+        <div class="whiteBackground">
+            <p class="title">Trainees enrolled</p>
+            {% if session.trainees|length == 0 %}
+            None
+            {% else %}
+            {% for trainee in session.trainees %}
+                <p>{{ trainee.lastName }} {{ trainee.firstName }}</p>
+                <p><a href=' {{ path('delete_trainee-in-session',{'id':trainee.id}) }} ' >remove</a></p>
+                
+                
+            {% endfor %}
+            {% endif %}
+            <p class="addTrainee_button"><a href=' {{ path('update_session',{'id':session.id}) }} '>add trainee(s) <i class="fa-solid fa-circle-plus"></i></a></p>
+        </div>
+        <div class="whiteBackground">
+            <p class="title">Trainees not enrolled</p>
+        {% for notEnrolledTrainee in notEnrolled %}
+            <p> {{notEnrolledTrainee}} </p>
         {% endfor %}
-    {% endif %}
+        </div>
     </div>
 
 </div>
+
+<style>
+    .addTrainee_button{
+        background-color:orange;
+        border-radius:100px;
+        width:fit-content;
+        padding:10px;
+    }
+    .addTrainee_button a{
+        color:var(--white);
+        text-decoration:none;
+        text-transform:uppercase;
+    }
+
+    .addTrainee_button:hover{
+        background-color:var(--green);
+    }
+
+    
+</style>
+
+
+
 {% endblock %}
 
 

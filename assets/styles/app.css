@@ -179,6 +179,9 @@ body {
 }
 
 
+
+
+
 /****************************************** ALL CATEGORIES */
 
 
@@ -210,6 +213,7 @@ body {
 #categories_table tr{
     margin-bottom: 10px; 
 }
+
 
 
 /****************************************** ADD A SESSION */
@@ -271,6 +275,29 @@ label {
     margin: 50px auto auto auto;
 }
 
+
+/****************************************** SESSION DETAILS */
+
+.sessionTrainees_wrapper{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+    }
+
+.title{
+    color:var(--blue);
+    text-transform:uppercase;
+    font-weight:700;
+}
+
+.whiteBackground{
+    background-color:var(--white);
+    border-radius:4px;
+    padding:20px;
+    height:fit-content;
+    display: flex;
+    flex-direction: column;
+}
 
 /****************************************** TRAINEE DETAILS */
 
