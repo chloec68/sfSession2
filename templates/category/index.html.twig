@@ -18,6 +18,7 @@
 
 {% block body %}
 <div class="categories_wrapper">
+    <a class="category_button_round" href="{{ path('add_category') }}">ADD A CATEGORY</a>
     <table id="categories_table">
         <thead>
             <th>name</th>
@@ -33,9 +34,7 @@
                 </tr>
             </tbody>
     {% endfor %}
-    </table>
-       <a class="category_button_round" href="{{ path('add_category') }}">ADD A CATEGORY</a>
-
+    </table> 
 </div>
 
 {% endblock %}

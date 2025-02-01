@@ -214,6 +214,21 @@ body {
     margin-bottom: 10px; 
 }
 
+.category_button_round{
+    background-color: orange;
+    width:fit-content;
+    display: block;
+    padding:10px;
+    border-radius:100px;
+    color:var(--white);
+    font-weight:700;
+    text-decoration: none;
+    margin:50px auto 50px auto;
+}
+
+.category_button_round:hover{
+    background-color: var(--green);
+}
 
 
 /****************************************** ADD A SESSION */
