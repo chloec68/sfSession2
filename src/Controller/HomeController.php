@@ -77,7 +77,7 @@ final class HomeController extends AbstractController
     }
 
     #[Route('/category/{id}/delete', name: 'delete_category')]
-    public function deleteCategory(Category $category, EntityManagerInterface $entityManager, int $id)
+    public function deleteCategory(Category $category, EntityManagerInterface $entityManager)
     {   
         $courses = $category->getCourses();
         foreach($courses as $course){

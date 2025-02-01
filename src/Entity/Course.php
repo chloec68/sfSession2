@@ -25,7 +25,7 @@ class Course
     /**
      * @var Collection<int, Program>
      */
-    #[ORM\OneToMany(targetEntity: Program::class, mappedBy: 'course')]
+    #[ORM\OneToMany(targetEntity: Program::class, mappedBy: 'course',orphanRemoval: true)]
     private Collection $programs;
 
     public function __construct()
