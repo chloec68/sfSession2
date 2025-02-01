@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Course;
 use App\Entity\Category;
+use App\Form\CourseType;
 use App\Form\CategoryType;
 use App\Repository\CourseRepository;
 use App\Form\AddCategoryToCourseType;
@@ -39,6 +41,24 @@ final class HomeController extends AbstractController
             return $this->render('course/index.html.twig', [
                 "courses" => $courses,
             ]);
+    }
+
+    #[Route('/course/add-course', name: 'add-course')]
+    public function addCourse(Request $request, CourseRepository $courseRepository, EntityManagerInterface $entityManager)
+    {   
+        $course = new Course();
+        $form = $this->createForm(CourseType::class,$course);
+        $form->handleRequest($request); 
+
+        if($form->isSubmitted() && $form->isValid()){
+            $course = $form->getData();
+            $entityManager->persist($course);
+            $entityManager->flush();
+            return $this->redirectToRoute('app_course');
+        }
+        return $this->render('course/new-course.html.twig', [
+            'form'=>$form,
+        ]);
     }
 
 
