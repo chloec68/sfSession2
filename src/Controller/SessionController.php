@@ -53,6 +53,7 @@ final class SessionController extends AbstractController
 	$form->handleRequest($request);
 
 	if($form->isSubmitted() && $form->isValid()){
+
 		$session = $form->getData();
 		$session->setTraining($training);
 
