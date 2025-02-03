@@ -12,8 +12,6 @@
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.firstName,{'attr': {'class': 'custom-input'}}) }}
-        {{ form_row(registrationForm.lastName,{'attr': {'class': 'custom-input'}}) }}
         {{ form_row(registrationForm.email,{'attr': {'class': 'custom-input'}}) }}
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password', 'attr':{'class':'custom-input'}
