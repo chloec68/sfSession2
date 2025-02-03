@@ -6,10 +6,14 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
-class User
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -39,6 +43,9 @@ class User
      */
     #[ORM\OneToMany(targetEntity: Session::class, mappedBy: 'staffMember')]
     private Collection $sessions;
+
+    #[ORM\Column]
+    private bool $isVerified = false;
 
     public function __construct()
     {
@@ -156,4 +163,52 @@ class User
     {
         return $this->getFirstName(). " " . $this->getLastName(). " (" . $this->getRole() . ")";
     }
+
+
+        // Implementing the required methods for UserInterface
+
+    // Get the unique identifier (replaces getUsername)
+    public function getUserIdentifier(): string
+    {
+        return $this->email; // Using email for login
+    }
+
+    // // Implement the getRoles() method
+    public function getRoles(): array
+    {
+        // ensure every user has at least one role
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        if (!in_array('ROLE_USER', $roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        return $roles;
+    }
+
+
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function eraseCredentials(): void
+    {
+        // Optional: erase sensitive data after authentication
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): static
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
 }
