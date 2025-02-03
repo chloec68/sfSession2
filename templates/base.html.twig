@@ -34,7 +34,12 @@
                         {# <p id="editProfile"><a href="">Edit Profile <i class="fa-solid fa-pen"></i></a></p> #}
                     </div>
                     <div class="nav-right">
+                    {% if app.user %}
+                    <p> You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a></p>
+                    {% else %}
                     <p><a href=" {{ path('app_register') }}">Register</a></p>
+                    <p><a href=" {{ path('app_login') }}">Log In</a></p>
+                    {% endif %}
                     </div>
                 </div>
             {% endblock %}
