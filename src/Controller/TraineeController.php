@@ -96,13 +96,18 @@ final class TraineeController extends AbstractController
     {   
         $session = $sessionRepository->find($idSession);
         $notEnrolled = $sessionRepository->findNotEnrolled($session->getId());
-
+        $nbPlaces = $session->getNbPlaces();
+        $trainees = $session->getTrainees();
+        $nbTrainees = count($trainees);
         $trainee = $traineeRepository->find($idTrainee);
         
-        $session->addTrainee($trainee);
-
-        $entityManager->persist($trainee);
-        $entityManager->flush(); 
+        if($nbPlaces > $nbTrainees){
+            $session->addTrainee($trainee);
+            $entityManager->persist($trainee);
+            $entityManager->flush(); 
+        }else{
+            return $this->redirectToRoute('app_session');
+        }
 
         return $this->render('session/detail_session.html.twig',
         ['session'=>$session, 'trainee'=>$trainee, 'idSession'=>$idSession,'idTrainee'=>$idTrainee, 'notEnrolled' => $notEnrolled]);
