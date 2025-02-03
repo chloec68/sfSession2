@@ -28,14 +28,15 @@
                 <div class="nav_container">
                     <div class="nav-left">
                     <p id="welcome">Welcome {% if app.user %}{{ app.user.userIdentifier }}{% else %}<p>you're not logged in yet</p>{% endif %}</p>
-                    {% if app.user %}{{ app.user.userIdentifier }}<img id="avatar" src="avatars/avatar1.png"></img>{% endif %}
+                    {% if app.user %}<img id="avatar" src="avatars/avatar1.png"></img>{% endif %}
                     </div>
-                    <div class="nav_middle">
-                    {# {% if app.user %}{{ app.user.userIdentifier }} <p id="editProfile"><a href="">Edit Profile <i class="fa-solid fa-pen"></i></a></p>{% endif %} #}
+                    <div class="nav-middle">
+                    {% if app.user %}<p><a href="{{path('app_home')}}">Home <i class="fa-solid fa-house"></i></a>{% endif %}
+                    {# {% if app.user %} <p id="editProfile"><a href="">Edit Profile <i class="fa-solid fa-pen"></i></a></p>{% endif %} #}
                     </div>
                     <div class="nav-right">
                     {% if app.user %}
-                    <p><a href="{{ path('app_logout') }}">Logout</a></p>
+                    <p><a href="{{ path('app_logout') }}">Logout <i class="fa-solid fa-right-from-bracket"></i></a></p>
                     {% else %}
                     <p><a href=" {{ path('app_register') }}">Register</a></p>
                     <p><a href=" {{ path('app_login') }}">Log In</a></p>

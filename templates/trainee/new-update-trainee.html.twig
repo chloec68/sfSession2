@@ -1,16 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block nav %}
-      <div class="nav_container">
-                    <div class="nav-left">
-                    </div>
-                    <div class="nav-right">
-                        <p><a href=" {{ path('app_trainee') }} ">all trainees <i class="fa-solid fa-circle-arrow-right"></i></a></p>
-                    </div>
-                </div>
-{% endblock nav %}
-
 {% block body %}
+
+<h1>{% if edit  %} Edit trainee details {% else %} Add a new trainee {% endif %}</h1>
 
 <div class="form_container">
     {{ form_start(formNewTrainee) }}

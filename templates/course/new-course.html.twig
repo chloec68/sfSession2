@@ -1,19 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block nav %}
-      <div class="nav_container">
-                    <div class="nav-left">
-                        <p>New course</p>
-                    </div>
-                    <div class="nav-right">
-                        <p><a href=" {{ path('app_course') }} ">all courses <i class="fa-solid fa-circle-arrow-right"></i></a></p>
-                        <p><a href=" {{ path('app_home') }} ">home <i class="fa-solid fa-circle-arrow-right"></i></a></p>
-                    </div>
-                </div>
-{% endblock nav %}
-
 {% block body %}
-
+<p><a href=" {{ path('app_course') }} " class="link_previousPage"><i class="fa-solid fa-circle-arrow-left"></i> all courses</a></p>
+<h1>New course</h1>
 <div class="form_container">
     {{ form_start(form) }}
 

@@ -9,7 +9,7 @@
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
 
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <h1 class="h3 mb-3 font-weight-normal">log in</h1>
         <label for="username">Email</label>
         <input type="email" value="{{ last_username }}" name="_username" id="username" class="custom-input" autocomplete="email" required autofocus>
         <label for="password">Password</label>
@@ -29,7 +29,7 @@
             </div>
         #}
 
-        <button class="submit-btn" type="submit">Sign in</button>
+        <button class="submit-btn" type="submit">Log In</button>
     </form>
 </div>
 {% endblock %}

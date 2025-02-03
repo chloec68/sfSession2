@@ -2,22 +2,8 @@
 
 {% block title %}TRAININGS{% endblock %}
 
-{% block nav %}
-      <div class="nav_container">
-                    <div class="nav-left">
-                    <p id="welcome">all trainings</p>
-                    {# <p> {{totalTrainings}} Trainings </p> #}
-                    </div>
-                    <div class="nav_middle">
-                        {# <p id="editProfile"><a href="">Edit Profile <i class="fa-solid fa-pen"></i></a></p> #}
-                    </div>
-                    <div class="nav-right">
-                        <p><a href=" {{path('app_home')}}">home <i class="fa-solid fa-circle-arrow-right"></i> </a></p>
-                    </div>
-                </div>
-{% endblock nav %}
-
 {% block body %}
+<h1>All trainings</h1>
 <div class="sessions_wrapper">
     <table id="sessions_table">
         <thead>
@@ -28,7 +14,7 @@
             <tbody>
                 <tr>
                     <td>{{training.name}}</td>       
-                        <td><a href="{{ path('detail_training',{'id':training.id}) }}"><i class="fa-solid fa-circle-arrow-right"></i></a></td>
+                    <td><a href="{{ path('detail_training',{'id':training.id}) }}"><i class="fa-solid fa-circle-arrow-right"></i></a></td>
                 </tr>
             </tbody>
     {% endfor %}
@@ -36,8 +22,6 @@
 
 </div>
 {% endblock %}
-
-
 
 
 

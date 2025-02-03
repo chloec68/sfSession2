@@ -2,23 +2,11 @@
 
 {% block title %}All Courses{% endblock %}
 
-{% block nav %}
-      <div class="nav_container">
-                    <div class="nav-left">
-                    <p id="welcome">all courses</p>
-                    {# <p> {{totalCourses}} Courses </p> #}
-                    </div>
-                    <div class="nav_middle">
-                        {# <p id="editProfile"><a href="">Edit Profile <i class="fa-solid fa-pen"></i></a></p> #}
-                    </div>
-                    <div class="nav-right">
-                        <p><a href=" {{ path('app_home') }}">home <i class="fa-solid fa-circle-arrow-right"></i> </a></p>
-                    </div>
-                </div>
-{% endblock nav %}
-
 {% block body %}
+<h1>all courses</h1>
+
 <div class="sessions_wrapper">
+<a class="add_button" href=" {{ path('add-course') }}">ADD A COURSE</a>
     <table id="sessions_table">
         <thead>
             <th>name</th>

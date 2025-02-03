@@ -1,3 +1,5 @@
+/****************************************** GENERAL */
+
 :root{
     --background:#F5F6FD;
     --white:#FEFEFE;
@@ -18,9 +20,23 @@ body {
 
 h1{
     text-align: center;
+    font-size:1.5em;
+    text-transform: uppercase;
+    color:var(--blue);
+    margin:50px auto auto auto;
 }
 
-/****************************************** BASE */
+.link_previousPage{
+    display: block;
+    text-align: right;
+    margin:50px;
+    color:var(--blue);
+    text-decoration: none;
+    text-transform:uppercase;
+    font-size: 1.5em;
+}
+
+/****************************************** BASE / LAYOUT */
 
 /***************** NAV */
 .nav_container{
@@ -33,51 +49,32 @@ h1{
     box-shadow: 10px 4px 5px 0px rgba(46,91,255,0.19);
     display: flex;
     justify-content: space-between;
-    align-items:baseline;
-}
-
-.nav_container #welcome{
+    align-items:center;
     text-transform:uppercase;
-    font-size: 1.5em;
+    font-size: 1em;
     font-weight:700;
 }
 
-.nav_middle{
-    margin:10px;
-}
-
-.nav_middle:hover,.nav-right i:hover{
-   cursor:pointer;
-}
-
-.nav_container .nav_middle #editProfile a{
-    font-size:1.3em;
+.nav-right a, .nav-middle a, .nav-left{
     color:var(--blue);
     text-decoration: none;
 }
 
 .nav-left{
-    display: flex;
-    align-items: baseline;
+    display:flex;
+    align-items:center;
     gap:20px;
 }
 
-.nav-right{
-    margin:10px;
-    text-transform:uppercase;
-}
-
-.nav-right a{
-    color:var(--blue);
-    text-decoration: none;
-    font-size: 1.5em;
+#welcome{
+    color:var(--black);
 }
 
 #avatar{
     width:100px;
 }
 
-/****************************************** HOME */
+/****************************************** HOME PAGE */
 
 .home_wrapper{
     padding:50px;
@@ -124,7 +121,7 @@ h1{
     text-decoration:none;
 }
 
-/****************************************** ALL SESSIONS,ALL TRAININGS,ALL TRAINEES */
+/****************************************** ALL SESSIONS,ALL TRAININGS,ALL TRAINEES, ALL CATEGORIES */
 
 .sessions_wrapper{
     width:100%;
@@ -137,13 +134,20 @@ h1{
     border-spacing: 0px 2em;
 }
 
-#sessions_table th{
+#categories_table{
+    width:fit-content;
+    border-radius: 4px;
+    border-spacing: 0px 1em;
+    margin:auto;
+}
+
+#sessions_table th,#categories_table th{
     text-transform: uppercase;
     color: var(--blue);
     font-weight: 600;
 }
 
- #sessions_table td {
+ #sessions_table td,#categories_table td {
     background-color: var(--white);
     padding: 8px;
     text-align: center;
@@ -157,12 +161,6 @@ h1{
 #search{
     width:40px;
 }
-
-/* .fa-circle-plus{
-    font-size:6em;
-    margin:20px 100px 20px 20px;
-    float:right;
-} */
 
 .add_button{
     border-radius:100px;
@@ -182,61 +180,7 @@ h1{
 }
 
 
-
-
-
-/****************************************** ALL CATEGORIES */
-
-
-.categories_wrapper{
-    width:100%;
-    padding:40px;
-}
-
-#categories_table{
-    width:fit-content;
-    border-radius: 4px;
-    border-spacing: 0px 1em;
-    margin:auto;
-}
-
-#categories_table th{
-    text-transform: uppercase;
-    color: var(--blue);
-    font-weight: 600;
-}
-
- #categories_table td {
-    background-color: var(--white);
-    padding: 8px;
-    text-align: center;
-    border: none;
-}
-
-#categories_table tr{
-    margin-bottom: 10px; 
-}
-
-.category_button_round{
-    background-color: orange;
-    width:fit-content;
-    display: block;
-    padding:10px;
-    border-radius:100px;
-    color:var(--white);
-    font-weight:700;
-    text-decoration: none;
-    margin:50px auto 50px auto;
-}
-
-.category_button_round:hover{
-    background-color: var(--green);
-}
-
-
-/****************************************** ADD A SESSION */
-
-
+/****************************************** ADD/UPDATE FORMS (SESSION, CATEGORY, TRAINEE) */
 
 .form_container{
     width:fit-content;
@@ -291,8 +235,9 @@ label {
     cursor: pointer;
     font-size: 1.3em;
     margin: 50px auto auto auto;
+    display: block;
+    width: fit-content;
 }
-
 
 /****************************************** SESSION DETAILS */
 

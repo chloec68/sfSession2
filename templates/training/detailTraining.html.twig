@@ -4,21 +4,12 @@
 
 {% block title %}Training sessions{% endblock %}
 
-{% block nav %}
-      <div class="nav_container">
-                    <div class="nav-left">
-                    <p id="welcome">{{ training.name }}/ sessions</p>
-                    </div>
-                    <div class="nav_middle">
-                        {# <p id="editProfile"><a href="">Edit Profile <i class="fa-solid fa-pen"></i></a></p> #}
-                    </div>
-                    <div class="nav-right">
-                        <p><a href=" {{ path('app_home') }} ">Home <i class="fa-solid fa-circle-arrow-right"></i></a></p>
-                    </div>
-                </div>
-{% endblock nav %}
-
 {% block body %}
+
+<a href="{{ path('app_training') }}" class="link_previousPage"><i class="fa-solid fa-circle-arrow-left"></i> All trainings </a>
+
+<h1>Available sessions for {{training.name}} training</h1>
+
 <div class="sessions_wrapper">
 <table id="sessions_table">
     <thead>

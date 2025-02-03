@@ -2,22 +2,9 @@
 
 {% block title %}All Trainees{% endblock %}
 
-{% block nav %}
-      <div class="nav_container">
-                    <div class="nav-left">
-                    <p id="welcome">all trainees </p>
-                    <p> {{totalTrainees}} Trainees </p>
-                    </div>
-                    <div class="nav_middle">
-                        {# <p id="editProfile"><a href="">Edit Profile <i class="fa-solid fa-pen"></i></a></p> #}
-                    </div>
-                    <div class="nav-right">
-                        <p><a href=" {{ path('app_home') }}">home <i class="fa-solid fa-circle-arrow-right"></i> </a></p>
-                    </div>
-                </div>
-{% endblock nav %}
-
 {% block body %}
+<h1>all trainees ({{totalTrainees}} Trainees)</h1>
+
 <div class="sessions_wrapper">
     <a class=" add_button" href="{{ path('add_trainee') }}">ADD A TRAINEE</a>
     <table id="sessions_table">
