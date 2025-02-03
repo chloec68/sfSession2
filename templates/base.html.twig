@@ -31,10 +31,11 @@
                     <img id="avatar" src="avatars/avatar1.png"></img>
                     </div>
                     <div class="nav_middle">
-                        <p id="editProfile"><a href="">Edit Profile <i class="fa-solid fa-pen"></i></a></p>
+                        {# <p id="editProfile"><a href="">Edit Profile <i class="fa-solid fa-pen"></i></a></p> #}
                     </div>
-                    {# <div class="nav-right">
-                    </div> #}
+                    <div class="nav-right">
+                    <p><a href=" {{ path('app_register') }}">Register</a></p>
+                    </div>
                 </div>
             {% endblock %}
         </nav>
