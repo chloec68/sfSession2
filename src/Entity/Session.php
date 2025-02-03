@@ -170,12 +170,6 @@ class Session
         return $this;
     }
 
-    public function getNbPlacesLeft(): int
-    {
-        return $this->getNbPlaces()-count($this->trainees);
-
-    }
-
     public function getTraining(): ?Training
     {
         return $this->training;
@@ -198,5 +192,23 @@ class Session
         $this->staffMember = $staffMember;
 
         return $this;
+    }
+
+
+    public function getNbPlacesLeft(): int
+    {
+        return $this->getNbPlaces()-count($this->trainees);
+
+    }
+
+    public function getAvailibility(): bool
+    {
+        if($this->getNbPlacesLeft() > 0)
+        {
+            return true;
+        }else{
+            return false;
+        }
+        
     }
 }

@@ -91,26 +91,27 @@ final class TraineeController extends AbstractController
         ]);
     }
 
+
+
     #[Route('/add-trainee/{idTrainee}/session/{idSession}', name:'add_trainee_to_session')]
     public function addTraineeToSesion(EntityManagerInterface $entityManager, TraineeRepository $traineeRepository, SessionRepository $sessionRepository, int $idTrainee, int $idSession)
     {   
         $session = $sessionRepository->find($idSession);
         $notEnrolled = $sessionRepository->findNotEnrolled($session->getId());
-        $nbPlaces = $session->getNbPlaces();
-        $trainees = $session->getTrainees();
-        $nbTrainees = count($trainees);
         $trainee = $traineeRepository->find($idTrainee);
-        
-        if($nbPlaces > $nbTrainees){
-            $session->addTrainee($trainee);
-            $entityManager->persist($trainee);
-            $entityManager->flush(); 
-        }else{
-            return $this->redirectToRoute('app_session');
-        }
-
+  
+            if($session->getAvailibility() == true && $trainee->isTraineeAvailable($session) == true){
+                $session->addTrainee($trainee);
+                $entityManager->persist($trainee);
+                $entityManager->flush(); 
+            }else{
+                return $this->redirectToRoute('app_session');
+            }
+    
         return $this->render('session/detail_session.html.twig',
         ['session'=>$session, 'trainee'=>$trainee, 'idSession'=>$idSession,'idTrainee'=>$idTrainee, 'notEnrolled' => $notEnrolled]);
     }
 }
+
+
 

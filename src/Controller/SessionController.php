@@ -94,7 +94,7 @@ final class SessionController extends AbstractController
             }
             $entityManager->persist($session);
             $entityManager->flush();
-            $message="trainee(s) successfully added";
+      
             return $this->redirectToRoute('app_session');
         }
         return $this->render('session/new_update_session.html.twig', [

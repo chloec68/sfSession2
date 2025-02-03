@@ -161,6 +161,36 @@ class Trainee
         return $this;
     }
 
+
+    public function isTraineeAvailable(Session $session):bool
+    {   
+        $sessions = $this->getSessions();
+
+        $newStartingDate = $session->getStartingDate();
+        $newEndingDate = $session->getEndingDate();
+
+        $result="";
+
+        foreach($sessions as $session){
+            $startingDate = $session->getStartingDate(); 
+            $endingDate = $session->getEndingDate(); 
+
+            if($startingDate < $newStartingDate && $endingDate < $newEndingDate){
+                $result = false; 
+            }else if($startingDate >= $newStartingDate && $startingDate <= $newEndingDate){
+                $result = false;
+            }else{
+                $result = true;
+            }
+        }
+
+        return $result;
+    }
+
+
+
+
+
     public function __toString(): string
     {
         return $this->getFirstName() . " " . $this->getLastName() ;
