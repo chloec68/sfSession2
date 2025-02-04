@@ -38,29 +38,29 @@ WHERE trainee NOT IN(
 
 {% block body %}
 <div class="sessions_wrapper">
-<p><a class="link_previousPage" href=" {{ path('app_session') }}"><i class="fa-solid fa-circle-arrow-left"></i> All session</a></p>
+<p><a class="link_previousPage" href=" {{ path('app_session') }}"><i class="fa-solid fa-circle-arrow-left"></i> All sessions</a></p>
     <table id="sessions_table">
         <thead>
+            <th>Bin</th>
+            <th>Edit</th>
             <th>name</th>
             <th>starting date</th>
             <th>ending date</th>
             <th>total places</th>
-            <th>Nb trainees enrolled</th>
             <th>available</th>
-            <th>Edit</th>
-            <th>Bin</th>
+            <th>Program</th>
         </thead>
    
             <tbody>
                 <tr>
+                    <td><a href=" {{ path('update_session', {'id':session.id}) }} "><i class="fa-solid fa-pen"></i></a></td>
+                    <td><a href=" {{ path('delete_session', {'id':session.id}) }} "><i class="fa-solid fa-trash"></i></a></td>
                     <td>{{session.name}}</td>
                     <td>{{session.startingDate | date("d-m-Y")}}</td>
                     <td>{{session.endingDate | date("d-m-Y")}}</td>
                     <td>{{session.nbPlaces}}</td>
-                    <td>{{session.nbTrainees}}</td>
                     <td>{{session.nbPlacesLeft}}</td>
-                    <td><a href=" {{ path('update_session', {'id':session.id}) }} "><i class="fa-solid fa-pen"></i></a></td>
-                    <td><a href=" {{ path('delete_session', {'id':session.id}) }} "><i class="fa-solid fa-trash"></i></a></td>
+                    <td><a href={{ path('detail_program', {'id':session.id}) }} " <i class="fa-solid fa-circle-arrow-right"></i></td>
 
                 </tr>
             </tbody>
@@ -68,7 +68,7 @@ WHERE trainee NOT IN(
 
     <div class="sessionTrainees_wrapper">
         <div class="whiteBackground">
-            <p class="title">Trainees enrolled</p>
+            <p class="title">Trainees enrolled : {{session.nbTrainees}}</p>
             {% if session.trainees|length == 0 %}
             None
             {% else %}
@@ -84,8 +84,10 @@ WHERE trainee NOT IN(
         <div class="whiteBackground">
             <p class="title">Trainees not enrolled</p>
         {% for notEnrolledTrainee in notEnrolled %}
-            <p> {{notEnrolledTrainee}} </p>
-            <p><a class="add_button" href=" {{ path('add_trainee_to_session',{'idTrainee':notEnrolledTrainee.id, 'idSession':session.id}) }} ">add</a></p>
+          
+            <p> {{notEnrolledTrainee}} 
+            <a class="addTrainee-button" href=" {{ path('add_trainee_to_session',{'idTrainee':notEnrolledTrainee.id, 'idSession':session.id}) }} ">add</a></p>
+          
         {% endfor %}
         </div>
     </div>

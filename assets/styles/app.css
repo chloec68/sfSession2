@@ -36,6 +36,15 @@ h1{
     font-size: 1.5em;
 }
 
+.fa-solid{
+    color: var(--blue);
+    text-decoration: none;
+}
+
+.fa-solid:hover{
+    color:var(--green);
+}
+
 /****************************************** BASE / LAYOUT */
 
 /***************** NAV */
@@ -284,6 +293,15 @@ label {
     height:fit-content;
     display: flex;
     flex-direction: column;
+}
+
+.addTrainee-button{
+    background-color: orange;
+    color:var(--white);
+    text-decoration: none;
+    padding:5px;
+    border-radius: 4px;
+    text-align: right;
 }
 
 /****************************************** TRAINEE DETAILS */

@@ -153,7 +153,7 @@ final class SessionController extends AbstractController
         ]);
     }
 
-    #[Route('/session/program/{id}', name: 'detail_program')]
+    #[Route('/session/{id}/program', name: 'detail_program')]
     public function programDetails(Session $session): Response
     {
         return $this->render('program/detailProgram.html.twig',[
