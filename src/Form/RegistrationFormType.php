@@ -43,17 +43,10 @@ class RegistrationFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Please enter a password',
                     ]),
-                    // new Regex([
-                    //     'pattern' => '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/',
-                    //     'message' => 'password must contain at least a number, an upperase and a special character',
+                    new Regex([
+                        'pattern' => '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/',
+                        'message' => 'password should be at lease 12 characters long and must contain at least a number, an upperase and a special character',
                         
-                    // ]),
-                    new Length([
-                        // 'min' => 12,
-                        'min' => 3,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
                     ]),
                 ],
             ]);
