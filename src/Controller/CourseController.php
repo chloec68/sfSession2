@@ -99,7 +99,20 @@ final class CourseController extends AbstractController
         $entityManager->remove($category);
         $entityManager->flush();
 
+        $this->addFlash('success', 'Category and all related courses successfully deleted');
+
         return $this->redirectToRoute('app_category');
+    }
+
+    #[Route('/course/{id}/delete', name: 'delete_course')]
+    public function deleteCourse(Course $course, EntityManagerInterface $entityManager):Response
+    {
+        $entityManager->remove($course);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Course successfully deleted');
+
+        return $this->redirectToRoute('app_course');
     }
 
 }

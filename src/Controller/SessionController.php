@@ -64,6 +64,9 @@ final class SessionController extends AbstractController
 			}
 		$entityManager->persist($session);
 		$entityManager->flush();
+        
+        $this->addFlash('success', 'Session successfully added');
+
 		return $this->redirectToRoute('app_session');
         }
 	}
@@ -94,7 +97,9 @@ final class SessionController extends AbstractController
             }
             $entityManager->persist($session);
             $entityManager->flush();
-      
+
+            $this->addFlash('success', 'Session successfully updated');
+
             return $this->redirectToRoute('app_session');
         }
         return $this->render('session/new_update_session.html.twig', [
@@ -133,6 +138,8 @@ final class SessionController extends AbstractController
 
         $entityManager->remove($session);
         $entityManager->flush();
+
+        $this->addFlash('success', 'Session successfully deleted');
 
         return $this->redirectToRoute('app_session');
     }

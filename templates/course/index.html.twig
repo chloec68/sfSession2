@@ -11,21 +11,20 @@
         <thead>
             <th>name</th>
             <th>category</th>
+            <th>delete</th>
         </thead>
-    {% for course in courses %}
+        {% for course in courses %}
             <tbody>
                 <tr>
                     <td>{{course.name}}</td>
-                    {% if course.category is not null%}
                     <td>{{course.category.name}}</td>
-                        {% else %}
-                        {# <td><a href="{{ path('add_category_to_course', {'id':course.id}) }}">add category</a></td> #}
-                        <td>NULL</td>
-                        {% endif %}
-                        </tr>
-                    </tbody>
-                        {% endfor %}
-        </table>
+                    <td><a href=" {{ path('delete_course', {'id':course.id}) }}">delete</a></td>
+                </tr>
+            </tbody>
+        {% endfor %}
+    </table>
 
 </div>
 {% endblock %}
+
+

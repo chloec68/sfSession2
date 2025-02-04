@@ -45,6 +45,7 @@ final class TraineeController extends AbstractController
             $trainee = $form->getData();
             $entityManager->persist($trainee);
             $entityManager->flush();
+            $this->addFlash('success', 'Success');
             return $this->redirectToRoute('app_trainee');
         }
 
@@ -63,12 +64,13 @@ final class TraineeController extends AbstractController
     // $session = $entityManager->getRepository(Session::class)->find($sessionId);
     $notEnrolled = $sessionRepository->findNotEnrolled($session->getId());
 
-
     $trainee = $traineeRepository->find($traineeId);
 
     $session->removeTrainee($trainee);
 
     $entityManager->flush();
+
+    $this->addFlash('success', 'Trainee successfully deleted from session'); 
 
     return $this->render('session/detail_session.html.twig', ['traineeId' => $traineeId,'session'=>$session,'notEnrolled' => $notEnrolled]);
     }   
@@ -79,7 +81,7 @@ final class TraineeController extends AbstractController
     {   
         $entityManager->remove($trainee);
         $entityManager->flush();
-
+        $this->addFlash('success', 'Trainee successfully deleted'); 
         return $this->redirectToRoute('app_trainee');
     }
 
@@ -91,8 +93,6 @@ final class TraineeController extends AbstractController
         ]);
     }
 
-
-
     #[Route('/add-trainee/{idTrainee}/session/{idSession}', name:'add_trainee_to_session')]
     public function addTraineeToSesion(EntityManagerInterface $entityManager, TraineeRepository $traineeRepository, SessionRepository $sessionRepository, int $idTrainee, int $idSession)
     {   
@@ -103,9 +103,26 @@ final class TraineeController extends AbstractController
             if($session->getAvailibility() == true && $trainee->isTraineeAvailable($session) == true){
                 $session->addTrainee($trainee);
                 $entityManager->persist($trainee);
-                $entityManager->flush(); 
+                $entityManager->flush();
+                $this->addFlash('success', 'Trainee successfully added in session'); 
+                // return $this->redirectToRoute('app_session');
+                return $this->render('session/detail_session.html.twig',
+                ['session'=>$session, 'trainee'=>$trainee, 'idSession'=>$idSession,'idTrainee'=>$idTrainee, 'notEnrolled' => $notEnrolled]);
+            }else if($session->getAvailibility() == false){
+                $this->addFlash('error', 'This session is already fully booked');
+                // return $this->redirectToRoute('app_session');
+                return $this->render('session/detail_session.html.twig',
+                ['session'=>$session, 'trainee'=>$trainee, 'idSession'=>$idSession,'idTrainee'=>$idTrainee, 'notEnrolled' => $notEnrolled]);
+            }else if($trainee->isTraineeAvailable($session) == false){
+                $this->addFlash('error', 'This trainee is already registered in an ongoing session');
+                // return $this->redirectToRoute('app_session');
+                return $this->render('session/detail_session.html.twig',
+                ['session'=>$session, 'trainee'=>$trainee, 'idSession'=>$idSession,'idTrainee'=>$idTrainee, 'notEnrolled' => $notEnrolled]);
             }else{
-                return $this->redirectToRoute('app_session');
+                $this->addFlash('error', 'Something went wrong');
+                // return $this->redirectToRoute('app_session');
+                return $this->render('session/detail_session.html.twig',
+                ['session'=>$session, 'trainee'=>$trainee, 'idSession'=>$idSession,'idTrainee'=>$idTrainee, 'notEnrolled' => $notEnrolled]);
             }
     
         return $this->render('session/detail_session.html.twig',

@@ -38,6 +38,7 @@ WHERE trainee NOT IN(
 
 {% block body %}
 <div class="sessions_wrapper">
+<p><a class="link_previousPage" href=" {{ path('app_session') }}"><i class="fa-solid fa-circle-arrow-left"></i> All session</a></p>
     <table id="sessions_table">
         <thead>
             <th>name</th>
@@ -73,44 +74,23 @@ WHERE trainee NOT IN(
             {% else %}
             {% for trainee in session.trainees %}
                 <p>{{ trainee.firstName }} {{ trainee.lastName }}</p>
-                <p><a href="{{ path('delete_trainee-from-session', {'id': session.id, 'traineeId': trainee.id}) }}">remove</a></p>
+                <p><a class="delete_button" href="{{ path('delete_trainee-from-session', {'id': session.id, 'traineeId': trainee.id}) }}">remove</a></p>
 
                 
             {% endfor %}
             {% endif %}
-            <p class="addTrainee_button"><a href=' {{ path('update_session',{'id':session.id}) }} '>add trainee(s) <i class="fa-solid fa-circle-plus"></i></a></p>
+            
         </div>
         <div class="whiteBackground">
             <p class="title">Trainees not enrolled</p>
         {% for notEnrolledTrainee in notEnrolled %}
             <p> {{notEnrolledTrainee}} </p>
-            <p><a href=" {{ path('add_trainee_to_session',{'idTrainee':notEnrolledTrainee.id, 'idSession':session.id}) }} ">add</a></p>
+            <p><a class="add_button" href=" {{ path('add_trainee_to_session',{'idTrainee':notEnrolledTrainee.id, 'idSession':session.id}) }} ">add</a></p>
         {% endfor %}
         </div>
     </div>
 
 </div>
-
-<style>
-    .addTrainee_button{
-        background-color:orange;
-        border-radius:100px;
-        width:fit-content;
-        padding:10px;
-    }
-    .addTrainee_button a{
-        color:var(--white);
-        text-decoration:none;
-        text-transform:uppercase;
-    }
-
-    .addTrainee_button:hover{
-        background-color:var(--green);
-    }
-
-    
-</style>
-
 
 
 {% endblock %}

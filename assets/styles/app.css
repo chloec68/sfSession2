@@ -74,6 +74,18 @@ h1{
     width:100px;
 }
 
+.flash-notice-success{
+    text-align: center;
+    margin-top:50px;
+    color: var(--green);
+}
+
+.flash-notice-error{
+    text-align: center;
+    margin-top:50px;
+    color: red;
+}
+
 /****************************************** HOME PAGE */
 
 .home_wrapper{
@@ -166,7 +178,7 @@ h1{
     border-radius:100px;
     background-color:orange;
     width:fit-content;
-    padding:20px;
+    padding:15px;
     color:var(--white);
     font-weight:600;
     text-decoration:none;
@@ -177,6 +189,18 @@ h1{
 .add_button:hover{
     background-color:var(--green);
     cursor:pointer;
+}
+
+.delete_button{
+    border-radius:100px;
+    background-color:red;
+    width:fit-content;
+    padding:15px;
+    color:var(--white);
+    font-weight:600;
+    text-decoration:none;
+    margin: auto;
+    display: block;
 }
 
 
