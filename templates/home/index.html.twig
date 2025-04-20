@@ -3,29 +3,28 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
+        <div class="home_wrapper">
+                {% if app.user %}
+                        <div class="all_wrapper">
+                        <a class="home_button" href="{{ path('app_training') }}">ALL TRAININGS</a>
+                        <a class="home_button" href="{{ path('app_session') }}">ALL SESSIONS</a>
 
-<div class="home_wrapper">
+                        
+                        <a class="home_button" href="{{ path('app_category') }}">ALL CATEGORIES</a>
+                        <a class="home_button" href="{{ path('app_course') }}">ALL COURSES</a>
+                        <a class="home_button" href="{{ path('app_trainee') }}">ALL TRAINEES</a>
+                        </div>
 
-        <div class="all_wrapper">
-        <a class="home_button" href="{{ path('app_training') }}">ALL TRAININGS</a>
-        <a class="home_button" href="{{ path('app_session') }}">ALL SESSIONS</a>
+                        <div class="add_wrapper">
+                        <a class="home_button_round" href="{{ path('add_trainee') }}">ADD A TRAINEE</a>
+                        <a class="home_button_round" href="{{ path('add_category') }}">ADD A CATEGORY</a>
+                        <a class="home_button_round" href=" {{ path('add-course') }}">ADD A COURSE</a>
+                        </div>
 
-        
-        <a class="home_button" href="{{ path('app_category') }}">ALL CATEGORIES</a>
-        <a class="home_button" href="{{ path('app_course') }}">ALL COURSES</a>
-        <a class="home_button" href="{{ path('app_trainee') }}">ALL TRAINEES</a>
+                {% else %}
+                        <p><a href=" {{ path('app_login') }}" class="home_button_round">Log In</a></p>
+                {% endif %}
         </div>
-
-        <div class="add_wrapper">
-        <a class="home_button_round" href="{{ path('add_trainee') }}">ADD A TRAINEE</a>
-        <a class="home_button_round" href="{{ path('add_category') }}">ADD A CATEGORY</a>
-        <a class="home_button_round" href=" {{ path('add-course') }}">ADD A COURSE</a>
-        </div>
-</div>
-
-
-
-
 {% endblock %}
 
 
