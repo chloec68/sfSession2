@@ -9,7 +9,6 @@
 <table id="sessions_table">
     <thead>
         <tr>
-            <th>Session</th>
             <th>Course</th>
             <th>Duration</th>
         </tr>
@@ -18,7 +17,6 @@
     <tbody>
         <tr>
         {% for program in session.programs %}     
-            <td>{{ program.session.name }}</td>
             <td>{{ program.course.name }}</td>   
             <td>{{ program.durationInDays }} days</td>
         {% endfor %}

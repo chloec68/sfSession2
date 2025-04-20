@@ -108,13 +108,9 @@ h1{
     gap:10vh;
 }
 
-.all_wrapper,.add_wrapper{
+.all_wrapper{
     gap:15px;
     display: flex;
-}
-
-.add_wrapper{
-    justify-content: center;
 }
 
 .home_button{
@@ -225,7 +221,7 @@ h1{
 .form_container{
     width:fit-content;
     padding:40px;
-    margin: 100px auto 100px auto;
+    margin: 3rem auto 3rem auto;
     background-color: var(--white);
     border-radius: 4px;
     -webkit-box-shadow: -1px 9px 11px 0px rgba(46,91,255,0.19);
@@ -256,9 +252,7 @@ label {
 
 .form_container .row {
     display: flex;
-
     gap: 40px; 
-    margin-bottom: 20px; 
 }
 
 .form_container .form-group {
