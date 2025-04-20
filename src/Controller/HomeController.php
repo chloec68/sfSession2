@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-use App\Form\UserAvatarFormType;
+use App\Form\UserFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +31,7 @@ final class HomeController extends AbstractController
 
         $user = $this->getUser();
 
-        $form = $this->createForm(UserAvatarFormType::class);
+        $form = $this->createForm(UserFormType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

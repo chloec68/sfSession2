@@ -3,13 +3,16 @@
 {% block title %}Profile{% endblock %}
 
 {% block body %}
+    <main class="profile__main">
+        {{ form_start(form) }}
+        <div>
+            {{ form_label(form.avatar) }}
+            {{ form_widget(form.avatar) }}
+            {{ form_errors(form.avatar) }}
+        </div>
+                <button type="submit" class="btn btn-outline-secondary">Enregistrer</button>
+            {{ form_end(form) }}
+    </main>
 
-{{ form_start(form) }}
-<div>
-    {{ form_label(form.avatar) }}
-    {{ form_widget(form.avatar) }}
-    {{ form_errors(form.avatar) }}
-</div>
-        <button type="submit" class="btn btn-outline-secondary">Enregistrer</button>
-    {{ form_end(form) }}
+
 {% endblock %}

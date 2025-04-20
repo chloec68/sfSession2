@@ -10,14 +10,14 @@
             <th>name</th>
             <th>see details</th>
         </thead>
-    {% for training in trainings %}
-            <tbody>
+        <tbody>
+            {% for training in trainings %}
                 <tr>
                     <td>{{training.name}}</td>       
                     <td><a href="{{ path('detail_training',{'id':training.id}) }}"><i class="fa-solid fa-circle-arrow-right"></i></a></td>
                 </tr>
-            </tbody>
-    {% endfor %}
+            {% endfor %}
+        </tbody>
     </table>
 
 </div>

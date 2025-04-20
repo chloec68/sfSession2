@@ -26,20 +26,16 @@
             <th>ending date</th>
             <th>details</th>
         </thead>
-    {% for session in sessions %}
-            <tbody>
+        <tbody>
+            {% for session in sessions %}
                 <tr>
                     <td>{{session.name}}</td>
                     <td>{{session.startingDate | date("d-m-Y")}}</td>
                     <td>{{session.endingDate | date("d-m-Y")}}</td>
                     <td><a href="{{ path('detail_session',{'id':session.id}) }}"><i class="fa-solid fa-circle-arrow-right"></i></a></td>
-   
-                    
-             
-                   
                 </tr>
-            </tbody>
-    {% endfor %}
+            {% endfor %}
+        </tbody>
     </table>
 
 </div>

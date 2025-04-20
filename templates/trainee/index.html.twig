@@ -15,17 +15,16 @@
             <th>details</th>
  
         </thead>
-    {% for trainee in trainees %}
             <tbody>
-                <tr>
-                    <td>{{trainee.firstName}}</td>
-                    <td>{{trainee.lastName }}</td>
-                    <td>{{trainee.email}}</td>
-                    <td><a href=" {{ path('detail_trainee',{'id':trainee.id}) }}"><i class="fa-solid fa-circle-arrow-right"></i></a></td>
-                </tr>
+                {% for trainee in trainees %}
+                    <tr>
+                        <td>{{trainee.firstName}}</td>
+                        <td>{{trainee.lastName }}</td>
+                        <td>{{trainee.email}}</td>
+                        <td><a href=" {{ path('detail_trainee',{'id':trainee.id}) }}"><i class="fa-solid fa-circle-arrow-right"></i></a></td>
+                    </tr>
+                {% endfor %}
             </tbody>
-    {% endfor %}
-
     </table>
 
 </div>

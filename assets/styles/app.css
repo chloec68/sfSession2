@@ -151,9 +151,10 @@ h1{
 }
 
 #sessions_table{
-    width:100%;
+    width:fit-content;
     border-radius: 4px;
     border-spacing: 0px 2em;
+    margin: auto;
 }
 
 #categories_table{
@@ -167,6 +168,9 @@ h1{
     text-transform: uppercase;
     color: var(--blue);
     font-weight: 600;
+    text-align: center;
+    padding:1rem;
+    
 }
 
  #sessions_table td,#categories_table td {
@@ -174,10 +178,12 @@ h1{
     padding: 8px;
     text-align: center;
     border: none;
+    padding: 0.5rem 2rem ;
 }
 
 #sessions_table tr{
     margin-bottom: 10px; 
+    border-bottom: 1rem solid var(--background);
 }
 
 #search{
@@ -205,9 +211,9 @@ h1{
     border-radius:100px;
     background-color:red;
     width:fit-content;
-    padding:15px;
+    padding:0.3rem 0.5rem;
     color:var(--white);
-    font-weight:600;
+    font-weight:500;
     text-decoration:none;
     margin: auto;
     display: block;
@@ -297,7 +303,7 @@ label {
 }
 
 .addTrainee-button{
-    background-color: orange;
+    background-color: var(--green);
     color:var(--white);
     text-decoration: none;
     padding:5px;
@@ -377,3 +383,31 @@ h3{
 .options-p a{
     text-decoration: none;
 }
+
+
+/****************************************** PROFILE */
+.profile__main{
+    padding:6rem;
+    form{
+        padding:3rem;
+        width: fit-content;
+        margin: auto;
+        background-color:  white;
+        box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+
+        label{
+            text-align: center;
+        }
+
+        div{
+            display: flex;
+            flex-direction: column;
+            gap:1rem;
+        }
+
+        button{
+            margin: 2rem auto 0 auto;
+            display: block;
+        }
+    }
+ }
